@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+//go里面没有while和do while
 
 func main() {
 	// 1. 赋值； 判断条件； 变量改变
@@ -16,7 +17,7 @@ func main() {
 		j++
 	}
 
-	//3. 无限循环
+	//3. 无限循环, 实现while的循环
 	k := 1
 	for {
 		if k < 10 {
