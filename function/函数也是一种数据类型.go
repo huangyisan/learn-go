@@ -13,6 +13,7 @@ func myFunc(funcvar func(int, int) int, n1 int, n2 int) int {
 	return funcvar(n1,n2)
 }
 
+
 func main() {
 	a := getsum
 	fmt.Printf("a的数据类型为%T, getsum数据类型为%T", a, getsum)
