@@ -34,7 +34,11 @@ func main(){
 	i++
 	var ptr *int = &i
 	fmt.Printf("ptr的内容为%v", *ptr)
-	fmt.Printf("自增为%v", i)
+	fmt.Printf("自增为%v\n", i)
+
+	var x int
+	x = 070
+	fmt.Printf("%b",x)
 
 
 }
