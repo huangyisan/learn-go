@@ -13,4 +13,5 @@ func main() {
 	//fmt.Println(utils.Cal(1,2,'+'))
 	fmt.Println(util.Cal(1,2,'+'))
 	fmt.Println(util.Cal2(1,2,'+'))
+	fmt.Println(util.Age)
 }
