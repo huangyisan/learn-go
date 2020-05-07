@@ -17,11 +17,12 @@ func main() {
 	book1.name = "yisan"
 
 	//将地址作为参数传入
+	//也是将结构体作为参数传入了函数中
 	printBook(&book1)
 
 }
 
-// 传入结构体的指针
+// 传入结构体的指针，
 func printBook(book *books) {
 	fmt.Println(book.page)
 	fmt.Println(book.name)

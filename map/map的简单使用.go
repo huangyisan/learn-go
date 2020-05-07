@@ -1,6 +1,8 @@
 package main
 
 import "fmt"
+// map不可相互比较
+
 // 1. 如果使用map来定义变量，则需要用make来初始化。
 
 func main() {
