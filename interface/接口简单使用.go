@@ -79,7 +79,8 @@ func main() {
 	iphone := Phone{}
 	camera := Camera{}
 
-	//将对象传入,展现了多态的情形
+	//将对象传入,展现了多态的情形.
+	// 只要实现了interface的所有方法,就可以把该实例看做interface进行传入
 	c.working(iphone)
 	c.working(camera)
 }
