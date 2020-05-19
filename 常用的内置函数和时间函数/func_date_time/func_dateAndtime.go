@@ -19,5 +19,23 @@ func main() {
 	// 相当有意思 https://stackoverflow.com/questions/45160822/what-does-20060102150405-mean
 	fmt.Println(now.Format("15:04:05 2006/01/02"))
 
+	//	4. 使用常量
+	i := 0
+	for {
+		fmt.Println(i)
+		i++
+		// time.second就是常量,为1s
+		time.Sleep(time.Millisecond*100)
+		if i == 20 {
+			break
+		}
+	}
+
+	// 时间戳秒级别
+	fmt.Printf("当前时间戳为%v\n", now.Unix())
+
+	// 时间戳纳秒级别
+	fmt.Printf("当前时间戳纳秒级别为%v\n", now.UnixNano())
+
 
 }
