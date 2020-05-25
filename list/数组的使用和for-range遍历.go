@@ -4,6 +4,7 @@ import "fmt"
 // 在go语言中,数组是值传递类型
 func main() {
 	var a [3]int = [3]int{1,2,3}
+	// 数组的for-range遍历
 	for i,v :=range a{
 		fmt.Println(i,v)
 	}
