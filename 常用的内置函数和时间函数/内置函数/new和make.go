@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 //1. new: 用来分配内存，主要用来分配值类型，比如int,float32,struct 返回的是指针
-//2. make: 用来分配内存， 主要用来分配引用类型， 比如chan、map、slice。
+//2. make: 用来分配内存， 主要用来分配引用类型， 比如channel、map、slice。
 
 
 func main() {
