@@ -2,6 +2,11 @@ package main
 
 import "fmt"
 // map不可相互比较
+// map在使用前一定要make
+// map的key是不能重复的,如果重复,则以最后一个key-value为准
+// map的value是可以相同的
+// map的key-value是无需的
+// make可以指定长度
 
 // 1. 如果使用map来定义变量，则需要用make来初始化。
 
