@@ -16,3 +16,13 @@ go
 1. 可排序的数据类型有三种，Integer，Floating-point，和String
 2. 可比较的数据类型除了上述三种外，还有Boolean，Complex，Pointer，Channel，Interface和Array
 3. 不可比较的数据类型包括，Slice, Map, 和Function
+
+### 值类型
+int,float,bool,string,以及数组和结构体(struct)。
+值类型变量声明后，不管是否已经赋值，编译器为其分配内存，此时该值存储于栈上。
+
+
+### 引用类型
+引用类型包括指针，slice切片，map ，chan，interface。
+变量直接存放的就是一个内存地址值，这个地址值指向的空间存的才是值。所以修改其中一个，另外一个也会修改（同一个内存地址）。
+引用类型必须申请内存才可以使用，make()是给引用类型申请内存空间。
