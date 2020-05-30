@@ -16,3 +16,6 @@ go
 1. 可排序的数据类型有三种，Integer，Floating-point，和String
 2. 可比较的数据类型除了上述三种外，还有Boolean，Complex，Pointer，Channel，Interface和Array
 3. 不可比较的数据类型包括，Slice, Map, 和Function
+
+### 引用类型和值类型
+1. 在golang中只有三种引用类型它们分别是切片slice、字典map、管道channel。其它的全部是值类型，
