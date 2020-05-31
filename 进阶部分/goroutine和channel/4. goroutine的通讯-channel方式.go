@@ -7,10 +7,12 @@ import (
 )
 
 /*
-1. channel的本质是一个数据结构-队列
-2. 数据是先进先出
-3. 线程安全，多goroutine访问时，不需要加锁，就是说channel本身就是线程安全的
-4. channel是有类型的，一个string的channel只能存放string。
+管道声明
+var 变量名 chan 数据类型
+var Num chan int  (管道存放int)
+var Map chan map[string]string (管道存放map[string]string)
+var person chan *Person
+var person2 chan Person
  */
 
  // 使用全局变量加锁同步
