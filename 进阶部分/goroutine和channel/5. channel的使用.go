@@ -29,6 +29,8 @@ func main() {
 	// 5. 从管道读取数据
 
 	var num2 int
+	// 丢弃一个数据
+	<- intChan
 	num2 = <- intChan
 	fmt.Println(num2)
 	fmt.Printf("长度为%v, 容量为%v", len(intChan), cap(intChan))
