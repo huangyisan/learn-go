@@ -2,15 +2,8 @@ package main
 
 import "fmt"
 
-/*
-开启一个writedata协程，向管道写入50个整数。
-开启一个readdata协程，向管道读取writedata的数据
-主线程等待writedata和readdata工作完后再退出
- */
-
-//  如果告诉主线程已经读结束了？ 设计一根新的管道，当readData读取完后，向新管道写入一个值并关闭。主线程for循环读取该管道，当读到写入的值，则结束。
-
-
+// 如果只往挂管道里面写数据二不读数据， 则管道满了后，就会出现阻塞而dead lock.阻塞代码位置为 intChan <- i
+// 即便写入的速度大于读取的速度，也不会产生阻塞。这个解释器已经帮处理了。无需担心。
 
 func writeData(intChan chan int) {
 	for i :=1 ; i<=50; i++ {
@@ -40,11 +33,11 @@ func readData(intChan chan int, exitChan chan bool) {
 
 func main() {
 	// 创建两个管道
-	intChan := make(chan int , 50)
+	intChan := make(chan int , 10)
 	exitChan := make(chan bool,1)
 
 	go writeData(intChan)
-	go readData(intChan,exitChan)
+	//go readData(intChan,exitChan)
 
 	// 直到能有数据可以读出来为止
 	for {
