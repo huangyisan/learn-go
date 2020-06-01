@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+
+// 以下代码可以用sync包的groupWait来实现。
+
 /*
 要求统计1-8000的数字中，哪些是素数。
 分配四个goroutine去完成。
