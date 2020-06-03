@@ -25,7 +25,7 @@ func reflectTest02(b interface{}) {
 
 	// 2. 获取到reflect.Value
 	rVal := reflect.ValueOf(b)
-	// 获取kind
+	// 获取kind, kind返回的是一个常量
 	fmt.Println("kind = ", rVal.Kind())
 	fmt.Printf("kind类型为 = %T\n", rVal.Kind())
 
@@ -33,9 +33,6 @@ func reflectTest02(b interface{}) {
 	fmt.Println("rVal = ", rVal)
 	fmt.Printf("rVal 类型为%T\n",rVal)
 
-	// 转成原本的值
-	//realVal := rVal.
-	//fmt.Printf("类型为%T\n", realVal)
 
 	// 转成interface{}
 	iV := rVal.Interface()
@@ -59,7 +56,8 @@ func main() {
 		Name:"yisan",
 		Age:20,
 	}
-
+	// 可以传入值,让其变成reflect.Value类型
+	fmt.Printf("1111%T\n", reflect.ValueOf(10))
 
 	reflectTest02(stu)
 }
