@@ -17,11 +17,11 @@ func process(conn net.Conn) {
 	for {
 		// 创建一个新的切片
 		buf := make([]byte, 1024)
-		fmt.Println("开始读取..")
+		//fmt.Println("开始读取..")
 		//n表示多少个字节, 这边Read函数会把conn的内容写入到buf中
 		n, err := conn.Read(buf) // 等待客户端通过conn 发送信息,如果客户端没有发送(Write),则该协程一直阻塞在这里
 		if err != nil {
-			fmt.Println("读内容出异常", err)
+			fmt.Println("读内容出异常, 用户退出", err)
 			// 如果异常就退出
 			return
 		}
