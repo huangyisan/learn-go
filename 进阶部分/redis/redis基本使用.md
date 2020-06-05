@@ -47,6 +47,14 @@
 5. zset(有序集合)
 
 
+## 比较好用的redis库
+1. go-redis
+2. redigo
+
+## redis连接池
+1. 事先初始化一定数量的连接, 放入到连接池中.
+2. 当go需要操作redis时, 直接从redis连接池中取出连接即可.
+3. 这样可以节省临时获取redis连接的时间, 从而提高效率.
 
 refer
 > http://redisdoc.com/
