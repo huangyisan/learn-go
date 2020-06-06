@@ -17,4 +17,3 @@ func main()  {
 	fmt.Printf("第二个元素地址为%p\n", &intArry[1])
 	fmt.Printf("第三个元素地址为%p\n", &intArry[2])
 }
-
