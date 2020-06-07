@@ -77,6 +77,7 @@ func main() {
 		}
 
 		if value != 0 {
+			// axisX为x轴, axisY为y轴, value为棋子, 1 白子, 2 黑子
 			chessMap[axisX][axisY] = value
 		}
 	}
