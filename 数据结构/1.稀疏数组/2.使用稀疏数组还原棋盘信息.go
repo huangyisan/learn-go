@@ -38,7 +38,7 @@ func main() {
 	var chessMap [7][7]int
 
 	// 读取sparseMap文件
-	file, err := os.Open("/Users/huangyisan/Desktop/github/hys/learn-go/数据结构/1.稀疏数组/sparseMap")
+	file, err := os.Open("./learn-go/数据结构/1.稀疏数组/sparseMap")
 	defer file.Close()
 	if err != nil {
 		fmt.Println("打开异常")
@@ -70,8 +70,8 @@ func main() {
 			return
 		}
 		// strings.Split(contentSlice[2], "\n")[0] value结尾存在\n, 通过Split方法去除\n
-		value, err := strconv.Atoi(strings.Split(contentSlice[2], "\n")[0])
-		if err != nil {
+		value, err := strconv.Atoi(strings.Split(contentSlice[2], "\r\n")[0])
+		if err !h= nil {
 			fmt.Println("value转换出错",err)
 			return
 		}
