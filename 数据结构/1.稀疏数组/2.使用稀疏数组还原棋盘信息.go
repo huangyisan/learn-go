@@ -71,7 +71,7 @@ func main() {
 		}
 		// strings.Split(contentSlice[2], "\n")[0] value结尾存在\n, 通过Split方法去除\n
 		value, err := strconv.Atoi(strings.Split(contentSlice[2], "\r\n")[0])
-		if err !h= nil {
+		if err != nil {
 			fmt.Println("value转换出错",err)
 			return
 		}
