@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"errors"
+)
 
 
 /*
@@ -21,32 +24,59 @@ type queue struct {
 }
 
 
-func (q *queue) pushQueue(value int) {
+func (q *queue) pushQueue(value int) (error) {
 	// 先判断队列是否满
-	if q.tail == q.maxCap {
+	if q.tail == q.maxCap -1 {
 		fmt.Println("队列已满")
-		return
+		return errors.New("队列满了")
 	}
 
+	// tail起始位置是-1, 先挪在填充
+	q.tail+=1
 	q.array[q.tail] = value
-	q.tail +=1
+	return nil
+
 
 }
 
-func (q *queue) popQueue() {
+func (q *queue) popQueue() error{
+	// 弹出之前先判断数组是否为空
 	if q.tail == q.head {
 		fmt.Println("队列为空")
-		return
+		return errors.New("队列为空")
 	}
 
-	val := q.array[q.head]
+	// head永远指向队首, 但永远不是指向第一个队首元素,如果第一个队首元素是角标为2, 那么head就是1
+	// 所以如果要取出真正的第一个值,需要让head先+1
 	q.head +=1
-	fmt.Println(val)
+	val := q.array[q.head]
+	fmt.Printf("弹出了%v\n", val)
+	return nil
 
 }
 
 func (q *queue) showQueue() {
-	for i:=q.head +1 ; i<q.tail; i++ {
+	//fmt.Println(q.tail)
+	for i:=q.head +1 ; i<=q.tail; i++ {
 		fmt.Println(q.array[i])
 	}
+}
+
+func main() {
+	Q := &queue{
+		head:-1,
+		tail:-1,
+		maxCap:4,
+	}
+	Q.pushQueue(4)
+	Q.pushQueue(5)
+	Q.pushQueue(3)
+	fmt.Println("push 4, 5, 3后为")
+	Q.showQueue()
+
+	Q.popQueue()
+	Q.popQueue()
+	fmt.Println("pop两次后为")
+	Q.showQueue()
+
 }
