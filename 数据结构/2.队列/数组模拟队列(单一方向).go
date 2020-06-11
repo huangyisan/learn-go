@@ -1,82 +1,77 @@
 package main
 
-import (
-	"fmt"
-	"errors"
-)
-
+import "fmt"
 
 /*
-1. 定义两个标记, head和tail.
-2. head表示队列头部(但不包含队首元素, head随着元素的弹出而改变), tail表示队列尾部(tail随着元素的推入而改变).
-3. 当tail等于head, 此时表示队列为空.
-4. 当tail等于队列容量-1, 此时表示队列已满(之所以-1,是因为tail是从-1开始).
-5. tail从-1开始,每次塞入一个数据,先tail+1, 然后塞入
-6. head从-1开始,每次弹出一个数据, 先head+1, 然后弹出
- */
 
-// 声明队列结构体, 四个要素, 长度, head, tail, 数组
-type queue struct {
+ */
+type Queue struct {
 	head int
 	tail int
-	array [4]int
 	maxCap int
+	array [4]int
 }
 
-
-func (q *queue) pushQueue(value int) (error) {
-	// 先判断队列是否满
-	if q.tail == q.maxCap -1 {
+func (q *Queue) isFull() bool {
+	// q.tail为下标，队列最大容量需要 - 1
+	if q.tail == q.maxCap - 1 {
 		fmt.Println("队列已满")
-		return errors.New("队列满了")
+		return false
 	}
-
-	// tail起始位置是-1, 先挪在填充
-	q.tail+=1
-	q.array[q.tail] = value
-	return nil
-
-
+	return true
 }
 
-func (q *queue) popQueue() error{
-	// 弹出之前先判断数组是否为空
-	if q.tail == q.head {
+func (q *Queue) isEmpty() bool {
+	if q.head == q.tail {
 		fmt.Println("队列为空")
-		return errors.New("队列为空")
+		return false
 	}
-
-	// head永远指向队首, 但永远不是指向第一个队首元素,如果第一个队首元素是角标为2, 那么head就是1
-	// 所以如果要取出真正的第一个值,需要让head先+1
-	q.head +=1
-	val := q.array[q.head]
-	fmt.Printf("弹出了%v\n", val)
-	return nil
-
+	return true
 }
 
-func (q *queue) showQueue() {
-	// head+1 开始, 然后追赶tail角标, 中间追赶部分的元素,就是队列内的元素.
-	for i:=q.head +1 ; i<=q.tail; i++ {
-		fmt.Println(q.array[i])
+
+func (q *Queue) pushQueue(value int) {
+	// 先判断队列是否满 true为不满
+	if q.isFull() {
+		q.tail += 1
+		q.array[q.tail] = value
+	}
+}
+
+func (q *Queue) popQueue() {
+	// 先判断队列是否为空 true为不空
+	if q.isEmpty() {
+		q.head += 1
+		fmt.Println("弹出元素为")
+		fmt.Println(q.array[q.head])
+	}
+}
+
+func (q *Queue) showQueue() {
+	// 获取从head+1到tail+1位切片, 所以需要从head+1号位进行遍历到tail的位置。
+	// 需要判断是否为空
+	if q.isEmpty() {
+		// 因为被head指向的元素是已经被视为弹出了,所以要从head的下一位开始算.
+		tmpHead := q.head + 1
+		for i:=tmpHead; i<=q.tail;i++ {
+			fmt.Println(q.array[i])
+		}
+	} else {
+		fmt.Println("空队列")
 	}
 }
 
 func main() {
-	Q := &queue{
+	Q := &Queue{
 		head:-1,
 		tail:-1,
 		maxCap:4,
 	}
-	Q.pushQueue(4)
-	Q.pushQueue(5)
+	Q.pushQueue(1)
+	Q.pushQueue(2)
 	Q.pushQueue(3)
-	fmt.Println("push 4, 5, 3后为")
-	Q.showQueue()
-
+	Q.pushQueue(3)
+	Q.pushQueue(4)
 	Q.popQueue()
-	Q.popQueue()
-	fmt.Println("pop两次后为")
 	Q.showQueue()
-
 }
