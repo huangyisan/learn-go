@@ -11,10 +11,10 @@ func main() {
 	str = string(arr1)
 	fmt.Println(str)
 
-//	 转换成rune数组, 可以处理中文
-	arr2 := []rune(str)
-	arr2[0] = '黄'
-	str = string(arr2)
-	fmt.Println(str)
+////	 转换成rune数组, 可以处理中文
+//	arr2 := []rune(str)
+//	arr2[0] = '黄'
+//	str = string(arr2)
+//	fmt.Println(str)
 
 }
