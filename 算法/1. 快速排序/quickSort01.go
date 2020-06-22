@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+// 填坑方式实现
 
 func quick_sort(arr *[10]int) [10]int {
 	return qSort(0, len(arr)-1, arr )
