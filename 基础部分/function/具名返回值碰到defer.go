@@ -4,8 +4,18 @@ import (
 	"fmt"
 )
 
+func foo() (string) {
+	var result string
+	result = "ccc"
+	defer func() {
+		result = "Change World" // change value at the very last moment
+	}()
+	return result
+}
+
 func main() {
 	fmt.Println("b return:", b()) // 打印结果为 b return: 2
+	fmt.Println(foo())
 }
 
 func b() (i int) {
