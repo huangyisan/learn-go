@@ -8,12 +8,12 @@ import (
 
 func httpGet(url string) (err error){
 	req, err := http.Get(url)
-	defer req.Body.Close()
 	fmt.Println(1)
 	if err != nil {
 		fmt.Println("get请求失败， %s", err.Error())
 		return
 	}
+	defer req.Body.Close()
 
 	content, err := ioutil.ReadAll(req.Body)
 	if err != nil {
