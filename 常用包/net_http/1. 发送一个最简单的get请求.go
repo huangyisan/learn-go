@@ -8,7 +8,6 @@ import (
 
 func httpGet(url string) (err error){
 	req, err := http.Get(url)
-	fmt.Println(1)
 	if err != nil {
 		fmt.Println("get请求失败， %s", err.Error())
 		return
@@ -26,6 +25,6 @@ func httpGet(url string) (err error){
 }
 
 func main() {
-	url := "https://httpbin.com/get"
+	url := "https://httpbin.org/get"
 	httpGet(url)
 }
