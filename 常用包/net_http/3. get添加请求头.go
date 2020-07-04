@@ -7,6 +7,7 @@ import (
 )
 
 func httpGet(requestUrl string) (err error)  {
+	// 请求头的方法 需要自己构造一个client对象
 	client := &http.Client{}
 	requestGet,_ := http.NewRequest("GET", requestUrl, nil)
 	requestGet.Header.Add("cus-header","cus-value")
