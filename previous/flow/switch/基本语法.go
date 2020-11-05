@@ -24,8 +24,11 @@ func main() {
 	//当age匹配5或者6或者7，则执行
 	case 5,6,7:
 		fmt.Println("5 6 7")
-		//关键字fallthrough，表示穿透，执行完该case继续往下匹配。
+		//关键字fallthrough，表示穿透，执行完该case继续往下，无条件执行
 		fallthrough
+	case 99:
+		fmt.Println("999")
+
 
 	default:
 		fmt.Println("等于18")
