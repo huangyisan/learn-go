@@ -14,3 +14,5 @@ func init(){
 func main() {
 	fmt.Println("我是main函数")
 }
+
+// 如果该代码作为包被导入，则会执行init()函数。
