@@ -20,7 +20,7 @@ func main() {
 	//也是将结构体作为参数传入了函数中
 	printBook(&book1)
 
-	//结构体也可以通过new来申请, 开辟一块新地址.
+	//结构体也可以通过new来申请, 开辟一块新地址.这种方式的book2是指针类型
 	book2 :=new(books)
 	book2.page=22
 	book2.name="yisan2"
