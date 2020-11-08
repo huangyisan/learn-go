@@ -33,6 +33,6 @@ func main() {
 	fmt.Println(value,ok)
 
 
-//	通过len查看map长度，也就是key的个数。
+//	通过len查看map长度，也就是key的个数, 而不是cap
 fmt.Println(len(countryCapitalMap))
 }
