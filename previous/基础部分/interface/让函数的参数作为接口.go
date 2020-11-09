@@ -41,4 +41,11 @@ func main() {
 	whoSay(s)
 	whoSay(t)
 
+	// 接口放入切片中，进行遍历
+	l := []speak{s,t}
+
+	for _,i := range l{
+		i.sayHi()
+	}
+
 }
