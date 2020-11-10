@@ -6,6 +6,7 @@ import "fmt"
 // 2. 如果我们希望，当错误发生后， 可以捕获到错误，并进行处理，保证代码可以继续向下执行。还可以捕获到错误后，作出一些动作。
 // 3. 错误处理方式 defer, panic, recover.
 // 4. 处理过程， go中抛出一个panic的异常，然后在defer中通过recover捕获这个异常，然后正常处理。
+// 5. recover得放在defer中使用
 
 func test() {
 	//使用defer + recover 来捕获和处理异常
