@@ -38,6 +38,7 @@ func main() {
 	for _, element := range list{
 		fmt.Println(element)
 		// 断言写法 if-else
+		// element.(int) 判断是否为int类型，第一个返回值，第二个返回结果的真假
 		if value, ok := element.(int); ok {
 			fmt.Printf("类型为%T, 值为%d\n", value, value)
 		} else if value, ok := element.(string); ok {
