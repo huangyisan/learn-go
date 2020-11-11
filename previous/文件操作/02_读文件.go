@@ -20,9 +20,11 @@ func readFile(path string) {
 	// 读取到的内容会放入buf中， n为读取到的长度
 	n, err := f.Read(buf)
 	if err != nil {
+
 		fmt.Println("读取失败")
 	}
-	fmt.Println(buf[:n])
+	// 使用string方法转换为字符串
+	fmt.Println(string(buf[:n]))
 }
 
 func main() {

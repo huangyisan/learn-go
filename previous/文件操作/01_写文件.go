@@ -17,7 +17,7 @@ func writeString(path,str string) {
     defer f.Close()
 
     for i:=0; i<9; i++ {
-        strCon := fmt.Sprintf("i = %d", i) + str
+        strCon := fmt.Sprintf("i = %d \n", i) + str
         // writeString写文件
         f.WriteString(strCon)
     }

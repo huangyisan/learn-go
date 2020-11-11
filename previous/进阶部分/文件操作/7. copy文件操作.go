@@ -33,8 +33,9 @@ func CopyFile(ori string, dst string) (written int64, err error) {
 
 	newWriter := bufio.NewWriter(file)
 
-
+	// 不全部读入内存，按缓冲区一定大小逐渐读取，防止内存溢出。
 	count,err := io.Copy(newWriter, newReader)
+	// Flush方法将数据从缓存刷入到文件中
 	newWriter.Flush()
 	return count, err
 }
