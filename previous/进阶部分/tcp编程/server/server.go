@@ -41,6 +41,7 @@ func main() {
 		return
 	}
 
+	// 连接正常，才关闭，所以该语句不可以放在38行后面
 	defer listen.Close() //延时关闭连接
 
 	// 循环等待客户端来连接
