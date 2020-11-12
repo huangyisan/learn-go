@@ -47,6 +47,7 @@ func main() {
 	time.Sleep(time.Second * 10)
 
 	// 从程序设计上能知道10s肯定能结束所有协程，但主线程并不知道，因此底层还是可能会产生资源争夺，因此还是需要加入互斥锁来解决。
+	// 等test方法释放锁之后, 下面获取锁然后执行.
 	lock.Lock()
 	for k,v := range myMap {
 		fmt.Printf("key is %v, value is %v\n",k,v)
