@@ -15,6 +15,8 @@ func writeOnly(ch chan <- int) {
 	for i:=0; i<5; i++ {
 		ch <- i
 	}
+	// 写完后关闭channel
+	close(ch)
 }
 
 
