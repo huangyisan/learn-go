@@ -4,6 +4,7 @@ import "fmt"
 
 // 实际开发中，可能没我们想象中那么容易确定何时关闭管道，此时可以使用select
 
+
 func main()  {
 	intChan := make(chan int,10)
 
