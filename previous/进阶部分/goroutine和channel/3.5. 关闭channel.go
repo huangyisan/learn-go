@@ -4,6 +4,7 @@ import "fmt"
 
 // 关闭channel
 // close(channelName)
+// 如果对一个已经关闭了的channel写入数据，则会抛出错误
 
 func main() {
 	ch := make(chan int)
@@ -14,6 +15,7 @@ func main() {
 		}
 		//关闭channel
 		close(ch)
+
 	}()
 
 	for {
