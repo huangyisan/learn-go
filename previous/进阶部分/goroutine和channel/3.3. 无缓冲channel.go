@@ -16,6 +16,7 @@ func main() {
 	// 指定空间为0， 所以该ch为无缓存channel.
 	ch := make(chan int, 0)
 
+	// 打印出来，可以看到 空间为0
 	fmt.Printf("len(ch) = %d\n", cap(ch))
 
 	go func() {
