@@ -27,7 +27,7 @@ func main() {
 		if n == 0 {
 			break
 		}
-		
+
 
 		tmp += string(buf[:n])
 	}
