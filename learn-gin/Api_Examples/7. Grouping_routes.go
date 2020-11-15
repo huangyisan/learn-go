@@ -19,4 +19,13 @@ func main() {
 			c.String(200, "/login")
 		})
 	}
+
+	v2 := router.Group("v2")
+	{
+		v2.GET("/login", func(c *gin.Context) {
+			c.String(200, "Get /login")
+		})
+	}
+
+	router.Run(":7777")
 }
