@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="go build example/Api_Examples (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
+    <module name="learn-go" />
+    <working_directory value="$PROJECT_DIR$/learn-gin" />
+    <kind value="FILE" />
+    <filePath value="$PROJECT_DIR$/learn-gin/Api_Examples/11. How_to_write_log_file.go" />
+    <package value="example/Api_Examples" />
+    <directory value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>
