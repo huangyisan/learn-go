@@ -31,7 +31,8 @@ func main() {
 	route.GET("/user/:name/*action", printAction)
 
 	route.POST("/user/:name/*action", func(c *gin.Context) {
-		c.FullPath() == "/user/:name/*action" // true
+		fmt.Println(c.FullPath() == "/user/:name/*action")  // true
+
 	})
 
 
