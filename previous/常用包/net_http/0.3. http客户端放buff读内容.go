@@ -22,7 +22,7 @@ func main() {
 	// 不停读取，直到返回为0，表示没有数据了
 	for  {
 		// 往buff读
-		n, err := resp.Body.Read(buf)
+		n, _ := resp.Body.Read(buf)
 		// 此时读取完毕, 则break
 		if n == 0 {
 			break
