@@ -17,10 +17,9 @@ import (
 // 定义book的结构体
 type Booking struct {
 	// 属性首字母大写， 指定time.Time类型， binding内bookabledate为自定义校验函数，time_format表示传入的时间格式样式
-	//CheckIn time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
+	// 对请求参数query的验证，所以使用form的方式。
 	CheckIn time.Time `form:"check_in" binding:"required,bookabledate" time_format:"2006-01-02"`
 	// gtfield表示比指定字段要大，这边业绩是checkout字段要比checkin来的大
-	//CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
 	CheckOut time.Time `form:"check_out" binding:"required,gtfield=CheckIn" time_format:"2006-01-02"`
 }
 // 自定义bookabledate验证函数, validator.Func类型为对传入的值进行验证，如果通过则返回true
