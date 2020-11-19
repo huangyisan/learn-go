@@ -5,4 +5,5 @@ Gin Version 1.6.3
 * 很多都是基于自己实践的理解，并不一定准确。
 
 ## 未完成内容
-1. 10. Customer_recovery 因v1.6.3不存在该方法S
+1. Customer_recovery 因v1.6.3不存在该方法S
+2. 所有render相关内容全部跳过
