@@ -45,5 +45,5 @@ func main() {
 }
 
 /*
-当浏览器请求http://127.0.0.1:7777的时候，打开console控制台，能看到推送下来的hello world
+当浏览器请求http://127.0.0.1:7777的时候，打开console控制台，能看到从服务端推送下来的hello world
  */
