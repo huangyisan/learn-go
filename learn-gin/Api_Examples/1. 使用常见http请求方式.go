@@ -23,6 +23,6 @@ func main() {
 	route.POST("/post", test)
 	// Delete Put Head Option Patch都类似
 
-	route.Run(":7777")
+	panic(route.Run(":7777"))
 
 }
