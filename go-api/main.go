@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"goapi/router"
 )
@@ -10,6 +11,8 @@ func main() {
 
 	router.Router(r)
 
-	r.Run(":7777")
+	if err := r.Run(":7777"); err != nil {
+		panic(err.Error())
+	}
 
 }

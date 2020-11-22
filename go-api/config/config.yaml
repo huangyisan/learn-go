@@ -1,0 +1,8 @@
+Database:
+  dbUser: "cc"
+  dbPass: "ss"
+  dbHost: "192.168.141.128"
+  dbPort: "3306"
+  dbname: "demo"
+  charset: "utf8mb4"
+
