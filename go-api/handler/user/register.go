@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goapi/model"
 	"goapi/model/user"
+	"golang.org/x/crypto/bcrypt"
 	"net/http"
 )
 
@@ -31,21 +32,35 @@ func Register(c *gin.Context) {
 
 	// 获取db对象
 	db := model.GetDB()
-	var newUser user.User
-	newUser = user.User{
-		Username: username,
-		Password: password1,
-	}
+
 
 	//数据库是否存在该用户
 	a := db.Where("username = ?", username).Take(&user.User{})
 	if a.RowsAffected == 0 {
+		// 加密password
+		encryptPassword, err := bcrypt.GenerateFromPassword([]byte(password1), bcrypt.DefaultCost)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"code" : http.StatusBadRequest,
+				"message": "密码加密错误",
+
+			})
+			return
+		}
+
+		newUser := user.User{
+			Username: username,
+			Password: string(encryptPassword),
+		}
 		db.Create(&newUser)
+
 	}else{
 		c.JSON(http.StatusBadRequest, gin.H{
 			"code" : http.StatusBadRequest,
 			"message": "已经存在该用户",
+
 		})
+		return
 	}
 
 	//db.First("username")
