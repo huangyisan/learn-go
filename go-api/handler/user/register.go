@@ -4,8 +4,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"goapi/model"
 	"goapi/model/user"
-
-	//"gorm.io/gorm"
 	"net/http"
 )
 
