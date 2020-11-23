@@ -26,15 +26,9 @@ func InitDB(dbUser,dbPass,dbHost,dbPort,dbname,charset string) *sql.DB {
 	}
 
 	// 初始化user表
-	if ok := db.Migrator().HasTable(&user.User{}); ok {
-		log.Println("数据库中已经存在User表")
-	}else {
-		if err := db.AutoMigrate(&user.User{}); err != nil {
-			log.Println("初始化User失败")
+	migrateTable(db, &user.User{})
 
-		}
-	}
-
+	// 初始化db pool  设置pool 属性
 	sqlDB, err := db.DB()
 	if err != nil {
 		panic(err.Error())
@@ -44,13 +38,25 @@ func InitDB(dbUser,dbPass,dbHost,dbPort,dbname,charset string) *sql.DB {
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
 	return sqlDB
+}
+
+func migrateTable(db *gorm.DB, table interface{}) {
+	if ok := isTableExist(db, table); !ok {
+		if err := db.AutoMigrate(&table); err != nil {
+			log.Printf("初始化%v失败",table)
+		}
+		log.Printf("初始化%v成功",table)
+	}
+	log.Printf("数据库已经存在%v表",table)
 
 }
 
-
-func isTableExist(db *gorm.DB, table *struct{}) bool {
+func isTableExist(db *gorm.DB, table interface{}) bool {
 	if ok := db.Migrator().HasTable(&table); ok {
-
+		// 已经存在该表
+		return true
 	}
+	// 不存在该表
+	return false
 }
 
