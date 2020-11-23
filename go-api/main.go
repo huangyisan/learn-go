@@ -25,19 +25,11 @@ func main() {
 	initConfig()
 
 	// db初始化
-	dbUser := viper.GetString("Database.dbUser")
-	dbPass := viper.GetString("Database.dbPass")
-	dbHost := viper.GetString("Database.dbHost")
-	dbPort := viper.GetString("Database.dbPort")
-	dbname := viper.GetString("Database.dbname")
-	charset := viper.GetString("Database.charset")
-	db := model.InitDB(dbUser, dbPass, dbHost, dbPort, dbname, charset)
+	db := model.InitDB()
 	
 	defer db.Close()
 
-
-
-
+	// 创建gin实例
 	r := gin.Default()
 
 	router.Router(r)
@@ -45,5 +37,4 @@ func main() {
 	if err := r.Run(":7777"); err != nil {
 		panic(err.Error())
 	}
-
 }

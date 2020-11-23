@@ -4,8 +4,8 @@ import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	username string
-	password string
+	Username string `gorm:"size:265"`
+	Password string `gorm:"size:265"`
 
 }
 

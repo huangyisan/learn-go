@@ -2,9 +2,11 @@ package user
 
 import (
 	"github.com/gin-gonic/gin"
-	"gorm.io/gorm"
-	"net/http"
+	"goapi/model"
+	"goapi/model/user"
 
+	//"gorm.io/gorm"
+	"net/http"
 )
 
 func Register(c *gin.Context) {
@@ -29,9 +31,25 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	// 数据库是否存在该用户
+	// 获取db对象
+	db := model.GetDB()
+	var newUser user.User
+	newUser = user.User{
+		Username: username,
+		Password: password1,
+	}
+
+	//数据库是否存在该用户
+	a := db.Where("username = ?", username).Take(&user.User{})
+	if a.RowsAffected == 0 {
+		db.Create(&newUser)
+	}else{
+		c.JSON(http.StatusBadRequest, gin.H{
+			"code" : http.StatusBadRequest,
+			"message": "已经存在该用户",
+		})
+	}
+
 	//db.First("username")
 	//userIsExist(username)
-
-
 }

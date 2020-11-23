@@ -1,8 +1,9 @@
 Database:
-  dbUser: "cc"
-  dbPass: "ss"
-  dbHost: "192.168.141.128"
+  dbUser: "root"
+  dbPass: "root"
+#  dbHost: "192.168.141.128"
+  dbHost: "192.168.65.130"
   dbPort: "3306"
-  dbname: "demo"
+  dbname: "demon"
   charset: "utf8mb4"
 
