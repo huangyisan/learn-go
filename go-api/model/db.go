@@ -37,6 +37,7 @@ func InitDB(dbUser,dbPass,dbHost,dbPort,dbname,charset string) *sql.DB {
 	sqlDB.SetMaxOpenConns(100)
 	sqlDB.SetConnMaxLifetime(time.Hour)
 
+
 	return sqlDB
 }
 
