@@ -10,6 +10,7 @@ func Response(c *gin.Context, httpcode int, code int, content string, msg string
 	})
 }
 
+// 200
 func Success(c *gin.Context, content string, msg string) {
 	Response(c, 200, 200, content, msg)
 }
