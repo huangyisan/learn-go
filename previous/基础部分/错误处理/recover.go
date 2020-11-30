@@ -1,7 +1,8 @@
 package main
 
 import "fmt"
-
+// err :=recover()  recover()能捕获到产生的异常, 所以只要err != nil, 则表示出现异常.
+// recover()常常和defer func() {}配合使用
 func testa() {
 	fmt.Println("testa")
 }
