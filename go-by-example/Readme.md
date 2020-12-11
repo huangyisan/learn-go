@@ -7,4 +7,4 @@ https://books.studygolang.com/gobyexample/
 https://gobyexample.com/
 
 ## github
-https://github.com/mmcgrana/gobyexample
+https://github.com/mmcgrana/gobyexampleg
