@@ -12,6 +12,7 @@ func main() {
 	// 长度 容量。数组的长度为容量，不足的地方用零值填充
 	fmt.Println(cap(a))
 	fmt.Println(len(a))
+	fmt.Println(a[0:3])
 
 	// for遍历
 	for k,v := range a {
@@ -34,4 +35,6 @@ func main() {
 	e[0][2] = "Monday2"
 	fmt.Println(e)
 
+
 }
+
