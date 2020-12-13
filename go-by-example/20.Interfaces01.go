@@ -35,7 +35,7 @@ func (s strange) long() int {
 	return (s.x + s.y) * 3
 }
 
-
+// caculate 为接口类型
 func calc(c caculate)  {
 	fmt.Println(c.area())
 	fmt.Println(c.long())
