@@ -4,6 +4,7 @@ import "fmt"
 
 func main() {
 	chanStr := make(chan int)
+
 	go func() {
 		chanStr <- 1
 	}()

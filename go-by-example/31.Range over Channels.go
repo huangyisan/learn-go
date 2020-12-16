@@ -18,5 +18,6 @@ func main() {
 	for v := range ch1 {
 		fmt.Println(v)
 	}
+
 }
 

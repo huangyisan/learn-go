@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 )
-
+// NewTimer只会执行一次
 func main() {
 	timer1 := time.NewTimer(time.Second * 2)
 
