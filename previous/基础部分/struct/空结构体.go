@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
 func main() {
 	// 空结构体, map可以用来判断是否存在某个key,存在则返回true,不存在,则返回false
@@ -23,8 +26,8 @@ func main() {
 	}{}
 
 	fmt.Println(a == b)
-	
 
-
+	// 空结构体占用大小为0
+	fmt.Println(unsafe.Sizeof(a))
 
 }
