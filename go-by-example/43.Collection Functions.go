@@ -1,5 +1,9 @@
 package main
 
+import (
+    "fmt"
+    "strings"
+)
 
 // 内联操作，不创建或调用帮助函数
 
@@ -21,4 +25,14 @@ func Any(vs []string, f func(string) bool ) bool {
         }
     }
     return false
+}
+
+func main() {
+    strSlice := []string{"a","b","c"}
+    fmt.Println(Index(strSlice, "a"))
+    fmt.Println(Any(strSlice, func(s string) bool {
+        return strings.HasPrefix(s, "a")
+    }))
+
+
 }
