@@ -52,6 +52,7 @@ func main() {
     }
 
     time.Sleep(time.Second)
+    // 载入操作能够保证原子的读变量的值，当读取的时候，任何其他 goroutine 都无法对该变量进行读写
     readOpsFinal := atomic.LoadUint64(&readOps)
     fmt.Println("readOpsFinal", readOpsFinal)
     wirteOpsFinal := atomic.LoadUint64(&writeOps)
