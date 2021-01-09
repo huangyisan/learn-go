@@ -80,6 +80,7 @@ func main() {
 
         }()
     }
+    // 保持1秒，该命令结束后，主线程继续，主线程执行完后，for出来的一堆子线程也将不存在
     time.Sleep(time.Second)
 
     readOpsFinal := atomic.LoadUint64(&readOps)
