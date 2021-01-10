@@ -26,5 +26,6 @@ func main() {
     p()
 
     p("Len: ", len(str))
+    // string转ASCII
     p("Char:", str[1])
 }
