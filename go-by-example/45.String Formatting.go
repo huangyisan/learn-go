@@ -61,7 +61,4 @@ func main() {
 
     // 使用Fprintf可以格式化输出, 指定io.Writers类型
     fmt.Fprintf(os.Stdout, "123")
-
-
-
 }
