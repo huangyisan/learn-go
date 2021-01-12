@@ -19,5 +19,3 @@ func Success(c *gin.Context, content string, msg string) {
 func Fail(c *gin.Context, content string, msg string) {
 	Response(c, 400, 400, content, msg)
 }
-
-	
