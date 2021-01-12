@@ -11,6 +11,7 @@ func main() {
 	p := fmt.Println
 	t := time.Now()
 	p(t.Format(time.RFC3339))
+	// 使用RFC3339来解析给定的value
 	t1, _ := time.Parse(
 		time.RFC3339,
 		"2012-11-01T22:08:41+00:00")
@@ -22,8 +23,8 @@ func main() {
 	p(t.Format("2006-01-02T15:04:05.999999-07:00"))
 
 	// 自定义时间格式来解析
-	form := "3 04 PM"
-	t2, _ := time.Parse(form, "8 41 PM")
+	form := "2006 3 04 PM"
+	t2, _ := time.Parse(form, "1998 8 41 PM")
 	p(t2)
 
 
