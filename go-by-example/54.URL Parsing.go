@@ -46,5 +46,4 @@ func main() {
     newUrl := u.String()
     fmt.Println(newUrl)
 
-
 }
