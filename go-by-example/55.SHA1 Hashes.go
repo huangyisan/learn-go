@@ -1,6 +1,7 @@
 package main
 
 import (
+    "crypto/md5"
     "crypto/sha1"
     "fmt"
 )
@@ -21,4 +22,11 @@ func main() {
 
     // 用16进制字符串打印 %x
     fmt.Printf("%x\n", bs)
+
+    // md5方法也类似
+    // 生成一个md5的对象
+    m := md5.New()
+    m.Write([]byte(str))
+    ms := m.Sum(nil)
+    fmt.Printf("%x\n", ms)
 }
