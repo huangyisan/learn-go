@@ -3,6 +3,7 @@ package main
 import (
     "flag"
     "fmt"
+    "os"
 )
 
 // 使用flag包，实现命令行标志
@@ -30,6 +31,9 @@ func main() {
     fmt.Println(name)
     // 打印所有标志
     fmt.Println(flag.Args())
+
+    fmt.Println(os.Args)
+    fmt.Println(len(os.Args))
 }
 
 /*
