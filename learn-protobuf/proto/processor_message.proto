@@ -1,1 +1,13 @@
-syntax = "proto3"
+syntax = "proto3";
+
+option go_package = "proto;my_protobuf";
+
+
+message CPU {
+  string bind = 1;
+  string name = 2;
+  uint32 number_cores = 3;
+  uint32 number_threads = 4;
+  float min_ghz = 5;
+  float max_ghz = 6;
+}
