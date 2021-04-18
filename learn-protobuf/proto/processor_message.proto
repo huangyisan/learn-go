@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "proto;my_protobuf";
+option go_package = "proto/;my_protobuf";
 
 
 message CPU {
