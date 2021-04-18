@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto/;my_protobuf";
+
+import "processor_message.proto";
+import "memory_message.proto";
+import "storage_message.proto";
+import "screen_message.proto";
+import "keyboard_message.proto";
+import "google/protobuf/timestamp.proto";
+
+message Laptop {
+    string id = 1;
+    string brand = 2;
+    string name = 3;
+    CPU cpu = 4;
+    Memory ram = 5;
+    // gpu可以有多个所以用repeated
+    repeated GPU gpus = 6;
+    repeated Storage storages = 7;
+    Screen screen = 8;
+    Keyboard keyboard = 9;
+    // 重量 二选一， 这里的tag是连续的
+    oneof weight {
+        double weight_kg = 10;
+        // 磅
+        double weight_lb = 11;
+    }
+    double price_usd = 12;
+    uint32 release_year = 13;
+    // 更新时间，使用google包里的时间单位
+    google.protobuf.Timestamp updated_at = 14;
+}
