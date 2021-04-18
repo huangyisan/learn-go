@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto/;my_protobuf";
+
+message Screen {
+    // 分辨率， 有长宽两个属性，所以也是一个message，属于嵌套
+    message Resolution {
+        uint32 width = 1;
+        uint32 height = 2;
+    }
+
+    enum Panel {
+        UNKNOWN = 0;
+        IPS = 1;
+        OLED = 2;
+    }
+    // 显示器尺寸
+    float size_inch = 1;
+    Resolution resolution = 2;
+    Panel panel = 3;
+    bool multitouch = 4;
+}

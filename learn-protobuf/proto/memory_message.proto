@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "proto/;my_protobuf";
+
+message Memory {
+    // 内存大小单位是一个枚举类型，只能在如下种类里面进行选择
+    enum Unit {
+        // 需要给定一个默认类型
+        UNKNOWN = 0;
+        BIT = 1;
+        BYTE = 2;
+        KILOBYTE = 3;
+        MEGABYTE = 4;
+        GIGABYTE = 5;
+        TERABYTE = 6;
+    }
+
+    // 内存值的字段，value。 
+    // 所以内存大小为值乘以单位即可得到。
+    uint64 value = 1;
+    // 单位为Unit类型，也就是上面的枚举类型
+    Unit unit = 2;
+}

@@ -1,7 +1,10 @@
 syntax = "proto3";
 
-option go_package = "proto/;my_protobuf";
+package proto;
 
+import "memory_message.proto";
+
+option go_package = "proto/;my_protobuf";
 
 message CPU {
   string bind = 1;
@@ -12,6 +15,12 @@ message CPU {
   float max_ghz = 6;
 }
 
-service CPUService {
-  rpc Hi(CPU) returns (CPU);
+message GPU {
+  string bind = 1;
+  string name = 2;
+  float min_ghz = 3;
+  float max_ghz = 4;
+  // Memory
+  Memory memory = 5;
+
 }
