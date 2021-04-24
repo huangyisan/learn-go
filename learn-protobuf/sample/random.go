@@ -46,3 +46,14 @@ func randomStringFromSet(a ...string) string {
 	}
 	return a[rand.Intn(n)]
 }
+
+func randomInt(min, max int) int {
+	// return 0 - (max-min)
+
+	return min + rand.Intn(max-min+1)
+}
+
+func randomFloat64(min, max float64) float64 {
+	// rand.Float64取值范围是0-1，所以这边乘以大小之差再加上小，则得到了最终范围
+	return min + rand.Float64()*(max-min)
+}
