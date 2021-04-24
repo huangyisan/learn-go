@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"errors"
 	pb "learn-protobuf/pb"
 	"log"
 
@@ -12,6 +13,7 @@ import (
 
 // LaptopServer用于生成laptop
 type LaptopServer struct {
+	Store InMemoryLaptopStore
 }
 
 func NewLaptopServer() *LaptopServer {
@@ -43,4 +45,21 @@ func (server *LaptopServer) CreateLaptop(
 		}
 		laptop.Id = id.String()
 	}
+	// save to db
+	err := server.Store.Save(laptop)
+	if err != nil {
+		code := codes.Internal
+		// 查看错误是否因为已经存在的id
+		if errors.Is(err, ErrAlreadyExists) {
+			code = codes.AlreadyExists
+		}
+		return nil, status.Errorf(code, "can not save laptop to the memory store: %w", err)
+	}
+	log.Printf("Saved laptop with id: %s", laptop.Id)
+
+	// 使用笔记本的id创建一个相应对象,返回给请求调用者
+	res := &pb.CreateLaptopResponse{
+		Id: laptop.Id,
+	}
+	return res, nil
 }
