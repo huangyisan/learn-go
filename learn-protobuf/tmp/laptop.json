@@ -1,0 +1,60 @@
+{
+  "id":  "eaf218fa-30b6-46a9-ac18-427d124f2b09",
+  "brand":  "Lenovo",
+  "name":  "Thinkpad X1",
+  "cpu":  {
+    "bind":  "AMD",
+    "name":  "Ryzen 3 Pro 2780U",
+    "number_cores":  8,
+    "number_threads":  11,
+    "min_ghz":  2.0984554,
+    "max_ghz":  2.552603
+  },
+  "ram":  {
+    "value":  "63",
+    "unit":  "GIGABYTE"
+  },
+  "gpus":  [
+    {
+      "bind":  "AMD",
+      "name":  "RX 5700-XT",
+      "min_ghz":  1.4068199,
+      "max_ghz":  1.5339171,
+      "memory":  {
+        "value":  "6",
+        "unit":  "GIGABYTE"
+      }
+    }
+  ],
+  "storages":  [
+    {
+      "driver":  "SSD",
+      "memory":  {
+        "value":  "618",
+        "unit":  "GIGABYTE"
+      }
+    },
+    {
+      "driver":  "HDD",
+      "memory":  {
+        "value":  "3",
+        "unit":  "TERABYTE"
+      }
+    }
+  ],
+  "screen":  {
+    "size_inch":  14.132136,
+    "resolution":  {
+      "width":  2055,
+      "height":  1156
+    },
+    "panel":  "IPS"
+  },
+  "keyboard":  {
+    "layout":  "QWERTZ"
+  },
+  "weight_kg":  2.1413465521420454,
+  "price_usd":  3224.9828748957725,
+  "release_year":  2017,
+  "updated_at":  "2021-04-24T06:33:19.098333200Z"
+}
