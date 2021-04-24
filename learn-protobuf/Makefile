@@ -3,3 +3,6 @@ gen:
 
 clean:
   rm pb/*.go
+
+test:
+  go test -cover -race ./..

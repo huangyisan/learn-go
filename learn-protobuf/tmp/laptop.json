@@ -1,27 +1,27 @@
 {
-  "id":  "eaf218fa-30b6-46a9-ac18-427d124f2b09",
-  "brand":  "Lenovo",
-  "name":  "Thinkpad X1",
+  "id":  "befaa60d-98d9-4fe7-8542-09c679602cdf",
+  "brand":  "Dell",
+  "name":  "XPS",
   "cpu":  {
-    "bind":  "AMD",
-    "name":  "Ryzen 3 Pro 2780U",
-    "number_cores":  8,
-    "number_threads":  11,
-    "min_ghz":  2.0984554,
-    "max_ghz":  2.552603
+    "bind":  "Intel",
+    "name":  "Core i9-2286M",
+    "number_cores":  5,
+    "number_threads":  8,
+    "min_ghz":  3.411295,
+    "max_ghz":  4.89175
   },
   "ram":  {
-    "value":  "63",
+    "value":  "17",
     "unit":  "GIGABYTE"
   },
   "gpus":  [
     {
-      "bind":  "AMD",
-      "name":  "RX 5700-XT",
-      "min_ghz":  1.4068199,
-      "max_ghz":  1.5339171,
+      "bind":  "NVIDIA",
+      "name":  "RX Vega-56",
+      "min_ghz":  1.1403944,
+      "max_ghz":  1.2188444,
       "memory":  {
-        "value":  "6",
+        "value":  "5",
         "unit":  "GIGABYTE"
       }
     }
@@ -30,7 +30,7 @@
     {
       "driver":  "SSD",
       "memory":  {
-        "value":  "618",
+        "value":  "730",
         "unit":  "GIGABYTE"
       }
     },
@@ -43,18 +43,18 @@
     }
   ],
   "screen":  {
-    "size_inch":  14.132136,
+    "size_inch":  13.995995,
     "resolution":  {
-      "width":  2055,
-      "height":  1156
+      "width":  6128,
+      "height":  3447
     },
     "panel":  "IPS"
   },
   "keyboard":  {
     "layout":  "QWERTZ"
   },
-  "weight_kg":  2.1413465521420454,
-  "price_usd":  3224.9828748957725,
-  "release_year":  2017,
-  "updated_at":  "2021-04-24T06:33:19.098333200Z"
+  "weight_kg":  2.3963250121412356,
+  "price_usd":  2830.3250998184103,
+  "release_year":  2015,
+  "updated_at":  "2021-04-24T06:41:26.249312200Z"
 }
