@@ -21,7 +21,7 @@ func NewLaptopServer(store LaptopStore) *LaptopServer {
 	return &LaptopServer{store}
 }
 
-// 生成laptop的service需要实现LaptopServiceServer接口
+// 生成laptop的service需要实现LaptopServiceServer接口的CreateLaptop方法
 func (server *LaptopServer) CreateLaptop(
 	cxt context.Context,
 	req *pb.CreateLaptopRequest) (
