@@ -14,6 +14,7 @@ import (
 // LaptopServer用于生成laptop
 type LaptopServer struct {
 	Store LaptopStore
+	pb.UnimplementedLaptopServiceServer
 }
 
 func NewLaptopServer(store LaptopStore) *LaptopServer {
