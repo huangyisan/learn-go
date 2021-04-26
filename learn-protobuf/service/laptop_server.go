@@ -19,7 +19,7 @@ type LaptopServer struct {
 
 func NewLaptopServer(store LaptopStore) *LaptopServer {
 
-	return &LaptopServer{store}
+	return &LaptopServer{store, pb.UnimplementedLaptopServiceServer{}}
 }
 
 // 生成laptop的service需要实现LaptopServiceServer接口的CreateLaptop方法
