@@ -7,6 +7,7 @@ import (
 	pb "learn-protobuf/pb"
 	"learn-protobuf/sample"
 	"log"
+	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -31,7 +32,12 @@ func main() {
 	req := &pb.CreateLaptopRequest{
 		Laptop: laptop,
 	}
-	res, err := laptopClient.CreateLaptop(context.Background(), req)
+
+	// 超时
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	defer cancel()
+
+	res, err := laptopClient.CreateLaptop(ctx, req)
 	if err != nil {
 		st, ok := status.FromError(err)
 		if ok && st.Code() == codes.AlreadyExists {

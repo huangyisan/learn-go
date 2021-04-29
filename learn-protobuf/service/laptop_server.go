@@ -5,6 +5,7 @@ import (
 	"errors"
 	pb "learn-protobuf/pb"
 	"log"
+	"time"
 
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
@@ -24,7 +25,7 @@ func NewLaptopServer(store LaptopStore) *LaptopServer {
 
 // 生成laptop的service需要实现LaptopServiceServer接口的CreateLaptop方法
 func (server *LaptopServer) CreateLaptop(
-	cxt context.Context,
+	ctx context.Context,
 	req *pb.CreateLaptopRequest) (
 	*pb.CreateLaptopResponse, error) {
 	//获取laptop,注意,这个laptop是客户端创建好发过来给server的
@@ -46,6 +47,20 @@ func (server *LaptopServer) CreateLaptop(
 		}
 		laptop.Id = id.String()
 	}
+
+	time.Sleep(time.Second * 6)
+
+	// check context err on server
+	if ctx.Err() == context.Canceled {
+		log.Print("canceled by client")
+		return nil, status.Error(codes.Canceled, "canceled by client")
+	}
+
+	if ctx.Err() != context.DeadlineExceeded {
+		log.Print("deadline is exceeded")
+		return nil, status.Error(codes.DeadlineExceeded, "deadline is exceeded")
+	}
+
 	// save to db
 	err := server.Store.Save(laptop)
 	if err != nil {
