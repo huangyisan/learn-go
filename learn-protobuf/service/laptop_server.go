@@ -5,7 +5,6 @@ import (
 	"errors"
 	pb "learn-protobuf/pb"
 	"log"
-	"time"
 
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
@@ -48,7 +47,7 @@ func (server *LaptopServer) CreateLaptop(
 		laptop.Id = id.String()
 	}
 
-	time.Sleep(time.Second * 6)
+	// time.Sleep(time.Second * 6)
 
 	// check context err on server
 	if ctx.Err() == context.Canceled {
@@ -56,7 +55,7 @@ func (server *LaptopServer) CreateLaptop(
 		return nil, status.Error(codes.Canceled, "canceled by client")
 	}
 
-	if ctx.Err() != context.DeadlineExceeded {
+	if ctx.Err() == context.DeadlineExceeded {
 		log.Print("deadline is exceeded")
 		return nil, status.Error(codes.DeadlineExceeded, "deadline is exceeded")
 	}
