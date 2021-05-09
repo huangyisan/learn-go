@@ -7,7 +7,6 @@ import (
 	pb "learn-protobuf/pb"
 	"log"
 	"sync"
-	"time"
 
 	"github.com/jinzhu/copier"
 )
@@ -81,7 +80,7 @@ func (store *InMemoryLaptopStore) Search(
 	defer store.mutex.RUnlock()
 
 	for _, laptop := range store.data {
-		time.Sleep(time.Second * 1)
+		// time.Sleep(time.Second * 1)
 		// 先检查ctx是否异常
 		if ctx.Err() == context.Canceled || ctx.Err() == context.DeadlineExceeded {
 			log.Print("context is cancelled")
