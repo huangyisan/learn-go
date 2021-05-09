@@ -86,6 +86,7 @@ func (store *InMemoryLaptopStore) Search(
 			log.Print("context is cancelled")
 			return errors.New("context is cancelled")
 		}
+		// 对laptop进行筛选过滤
 		if isQualified(filter, laptop) {
 			// deep copy
 			other, err := deepCopy(laptop)

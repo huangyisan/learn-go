@@ -86,6 +86,7 @@ func (server *LaptopServer) SearchLaptop(req *pb.SearchLapTopRequest, stream pb.
 		// get context from stream, and pass to func Search
 		stream.Context(),
 		filter,
+		// 这里的laptop被传入的是符合filter条件的laptop
 		func(laptop *pb.Laptop) error {
 			res := &pb.SearchLapTopResponse{
 				Laptop: laptop,

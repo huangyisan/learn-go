@@ -99,12 +99,14 @@ func TestClientSearchLaptop(t *testing.T) {
 	found := 0
 	for {
 		res, err := stream.Recv()
+
 		if err == io.EOF {
 			break
 		}
+		fmt.Println(res.GetLaptop().GetId())
 		require.NoError(t, err)
 		require.Contains(t, expectedIDs, res.GetLaptop().GetId())
-
+		fmt.Println(found)
 		found += 1
 	}
 	fmt.Printf("%v", expectedIDs)
