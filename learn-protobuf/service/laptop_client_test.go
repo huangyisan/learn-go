@@ -98,6 +98,7 @@ func TestClientSearchLaptop(t *testing.T) {
 
 	found := 0
 	for {
+		// 这边接受到的res，已经在server端进行了过滤。只剩下符合的条件的laptop数据
 		res, err := stream.Recv()
 
 		if err == io.EOF {
