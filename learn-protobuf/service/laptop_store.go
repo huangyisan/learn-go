@@ -1,10 +1,13 @@
 package service
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	pb "learn-protobuf/pb"
+	"log"
 	"sync"
+	"time"
 
 	"github.com/jinzhu/copier"
 )
@@ -16,7 +19,7 @@ type LaptopStore interface {
 	Save(laptop *pb.Laptop) error
 	Find(id string) (*pb.Laptop, error)
 	// search for laptop with filter, returns one by one via the found Function
-	Search(filter *pb.Filter, found func(laptop *pb.Laptop) error) error
+	Search(ctx context.Context, filter *pb.Filter, found func(laptop *pb.Laptop) error) error
 }
 
 // store laptop in memory
@@ -71,12 +74,19 @@ func (store *InMemoryLaptopStore) Find(id string) (*pb.Laptop, error) {
 
 // search
 func (store *InMemoryLaptopStore) Search(
+	ctx context.Context,
 	filter *pb.Filter, found func(laptop *pb.Laptop) error) error {
 	// 获取读锁
 	store.mutex.RLock()
 	defer store.mutex.RUnlock()
 
 	for _, laptop := range store.data {
+		time.Sleep(time.Second * 1)
+		// 先检查ctx是否异常
+		if ctx.Err() == context.Canceled || ctx.Err() == context.DeadlineExceeded {
+			log.Print("context is cancelled")
+			return errors.New("context is cancelled")
+		}
 		if isQualified(filter, laptop) {
 			// deep copy
 			other, err := deepCopy(laptop)
