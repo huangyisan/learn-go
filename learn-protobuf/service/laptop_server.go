@@ -13,13 +13,15 @@ import (
 
 // LaptopServer用于生成laptop
 type LaptopServer struct {
-	Store LaptopStore
+	laptopStore LaptopStore
+	imageStore  ImageStore
+
 	pb.UnimplementedLaptopServiceServer
 }
 
-func NewLaptopServer(store LaptopStore) *LaptopServer {
+func NewLaptopServer(laptopStore LaptopStore, imageStore ImageStore) *LaptopServer {
 
-	return &LaptopServer{store, pb.UnimplementedLaptopServiceServer{}}
+	return &LaptopServer{laptopStore, imageStore, pb.UnimplementedLaptopServiceServer{}}
 }
 
 // 生成laptop的service需要实现LaptopServiceServer接口的CreateLaptop方法
@@ -61,7 +63,7 @@ func (server *LaptopServer) CreateLaptop(
 	}
 
 	// save to db
-	err := server.Store.Save(laptop)
+	err := server.laptopStore.Save(laptop)
 	if err != nil {
 		code := codes.Internal
 		// 查看错误是否因为已经存在的id
@@ -82,7 +84,7 @@ func (server *LaptopServer) CreateLaptop(
 func (server *LaptopServer) SearchLaptop(req *pb.SearchLapTopRequest, stream pb.LaptopService_SearchLaptopServer) error {
 	filter := req.GetFilter()
 	log.Printf("receive a search-laptop request with filter: %v", filter)
-	err := server.Store.Search(
+	err := server.laptopStore.Search(
 		// get context from stream, and pass to func Search
 		stream.Context(),
 		filter,
@@ -103,5 +105,10 @@ func (server *LaptopServer) SearchLaptop(req *pb.SearchLapTopRequest, stream pb.
 	if err != nil {
 		return status.Errorf(codes.Internal, "unexcepted error: %v", err)
 	}
+	return nil
+}
+
+// uploadimage 客户端发送信息
+func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServer) error {
 	return nil
 }

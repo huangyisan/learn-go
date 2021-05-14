@@ -17,7 +17,8 @@ import (
 
 func TestClientCreateLaptop(t *testing.T) {
 	t.Parallel()
-	laptopServer, serverAddress := startTestLaptopServer(t, service.NewInMemoryLaptopStore())
+	laptopStore := service.NewInMemoryLaptopStore()
+	serverAddress := startTestLaptopServer(t, laptopStore, nil)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	// 创建laptop
@@ -32,7 +33,7 @@ func TestClientCreateLaptop(t *testing.T) {
 	require.Equal(t, expectedID, res.Id)
 
 	// check laptop saved in store
-	other, err := laptopServer.Store.Find(res.Id)
+	other, err := laptopStore.Find(res.Id)
 	require.NoError(t, err)
 	require.NotNil(t, other)
 
@@ -53,7 +54,7 @@ func TestClientSearchLaptop(t *testing.T) {
 		},
 	}
 
-	store := service.NewInMemoryLaptopStore()
+	laptopStore := service.NewInMemoryLaptopStore()
 
 	expectedIDs := make(map[string]bool)
 
@@ -84,10 +85,10 @@ func TestClientSearchLaptop(t *testing.T) {
 			laptop.Ram = &pb.Memory{Value: 64, Unit: pb.Memory_GIGABYTE}
 			expectedIDs[laptop.Id] = true
 		}
-		err := store.Save(laptop)
+		err := laptopStore.Save(laptop)
 		require.NoError(t, err)
 	}
-	_, serverAddress := startTestLaptopServer(t, store)
+	serverAddress := startTestLaptopServer(t, laptopStore, nil)
 	laptopClient := newTestLaptopClient(t, serverAddress)
 
 	req := &pb.SearchLapTopRequest{
@@ -116,17 +117,17 @@ func TestClientSearchLaptop(t *testing.T) {
 }
 
 // start grpc server, 返回laptopServer和监听地址信息
-func startTestLaptopServer(t *testing.T, store service.LaptopStore) (*service.LaptopServer, string) {
-	laptopServer := service.NewLaptopServer(store)
+func startTestLaptopServer(t *testing.T, laptopStore service.LaptopStore, imageStore service.ImageStore) string {
+	laptopServer := service.NewLaptopServer(laptopStore, imageStore)
 	// create grpc server
 	grpcServer := grpc.NewServer()
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
 	// 0表示随机分配端口
-	listener, err := net.Listen("tcp", "127.0.0.1:8880")
+	listener, err := net.Listen("tcp", ":0")
 	require.NoError(t, err)
 	// 将他运行在go协程里,以至于下面的代码不会被block
 	go grpcServer.Serve(listener)
-	return laptopServer, listener.Addr().String()
+	return listener.Addr().String()
 }
 
 // 创建client端

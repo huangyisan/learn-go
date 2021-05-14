@@ -76,7 +76,7 @@ func TestServerCreateLaptop(t *testing.T) {
 				Laptop: tc.laptop,
 			}
 			// 创建server
-			server := service.NewLaptopServer(tc.store)
+			server := service.NewLaptopServer(tc.store, nil)
 			// 发送请求
 			res, err := server.CreateLaptop(context.Background(), req)
 			// 返回的code为ok情况
