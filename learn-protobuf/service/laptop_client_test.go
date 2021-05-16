@@ -118,14 +118,10 @@ func TestClientSearchLaptop(t *testing.T) {
 	require.Equal(t, len(expectedIDs), found)
 }
 
-func myOpenFile(path string) {
-	file, err := os.Open(path)
-}
-
 func TestClientUploadImage(t *testing.T) {
 	t.Parallel()
 
-	testImageFolder := "../tmp"
+	const testImageFolder = "../tmp"
 
 	laptopStore := service.NewInMemoryLaptopStore()
 	imageStore := service.NewDiskImageStore(testImageFolder)
@@ -140,7 +136,7 @@ func TestClientUploadImage(t *testing.T) {
 	imagePath := fmt.Sprintf("%s/laptop.jpg", testImageFolder)
 	file, err := os.Open(imagePath)
 	require.NoError(t, err)
-	// defer file.Close()
+	defer file.Close()
 
 	stream, err := laptopClient.UploadImage(context.Background())
 	require.NoError(t, err)
@@ -166,7 +162,6 @@ func TestClientUploadImage(t *testing.T) {
 		// 返回字节数和err
 		n, err := reader.Read(buffer)
 		if err == io.EOF {
-			file.Close()
 			break
 		}
 		require.NoError(t, err)
@@ -192,7 +187,6 @@ func TestClientUploadImage(t *testing.T) {
 	savedImagePath := fmt.Sprintf("%s/%s%s", testImageFolder, res.GetId(), imageType)
 	require.FileExists(t, savedImagePath)
 	// 测试完成后确保删除文件无报错
-
 	err = os.Remove(savedImagePath)
 	require.NoError(t, err)
 }
