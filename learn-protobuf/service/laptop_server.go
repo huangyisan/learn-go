@@ -57,14 +57,8 @@ func (server *LaptopServer) CreateLaptop(
 	// time.Sleep(time.Second * 6)
 
 	// check context err on server
-	if ctx.Err() == context.Canceled {
-		log.Print("canceled by client")
-		return nil, status.Error(codes.Canceled, "canceled by client")
-	}
-
-	if ctx.Err() == context.DeadlineExceeded {
-		log.Print("deadline is exceeded")
-		return nil, status.Error(codes.DeadlineExceeded, "deadline is exceeded")
+	if err := contextError(ctx); err != nil {
+		return nil, err
 	}
 
 	// save to db
@@ -136,6 +130,10 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	imageSize := 0
 
 	for {
+		// 每一次循环之前，都检查context是否有error
+		if err := contextError(stream.Context()); err != nil {
+			return err
+		}
 		log.Print("waiting to receive more data")
 		req, err := stream.Recv()
 		if err == io.EOF {
@@ -148,6 +146,9 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 
 		chunk := req.GetChunkData()
 		size := len(chunk)
+
+		log.Printf("received a chunk with size: %d", size)
+
 		imageSize += size
 
 		if imageSize > maxImageSize {
@@ -180,7 +181,17 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	// save successful
 	log.Printf("saved image with id: %s, size: %d", imageID, imageSize)
 	return nil
+}
 
+func contextError(ctx context.Context) error {
+	switch ctx.Err() {
+	case context.Canceled:
+		return logError(status.Error(codes.Canceled, "canceled by client"))
+	case context.DeadlineExceeded:
+		return logError(status.Error(codes.DeadlineExceeded, "deadline is exceeded"))
+	default:
+		return nil
+	}
 }
 
 func logError(err error) error {

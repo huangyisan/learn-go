@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"context"
 	"flag"
 	"fmt"
@@ -8,6 +9,8 @@ import (
 	pb "learn-protobuf/pb"
 	"learn-protobuf/sample"
 	"log"
+	"os"
+	"path/filepath"
 	"time"
 
 	"google.golang.org/grpc"
@@ -15,8 +18,8 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func createLaptop(laptopClient pb.LaptopServiceClient) {
-	laptop := sample.NewLaptop()
+func createLaptop(laptopClient pb.LaptopServiceClient, laptop *pb.Laptop) {
+	// laptop.Id = ""
 	req := &pb.CreateLaptopRequest{
 		Laptop: laptop,
 	}
@@ -69,7 +72,98 @@ func searchLaptop(laptopClient pb.LaptopServiceClient, filter *pb.Filter) {
 		log.Print(" + ram: ", laptop.GetRam().GetValue(), laptop.GetRam().GetUnit())
 		log.Print(" + price: ", laptop.GetPriceUsd())
 	}
+}
 
+func uploadImage(laptopClient pb.LaptopServiceClient, laptopID string, imagePath string) {
+	file, err := os.Open(imagePath)
+	if err != nil {
+		log.Fatal("can not open image file:", err)
+	}
+	defer file.Close()
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*5)
+	defer cancel()
+	// 这边启一个stream， 下面代码会使用stream.Send方法发送图片info和多次图片data，用的同一股流，然后在server端能正确的进行对这股流获取info或者组装成data，应该是用到了http2的特性。
+	stream, err := laptopClient.UploadImage(ctx)
+	if err != nil {
+		log.Fatal("cannot upload image: ", err)
+	}
+	// UploadImageRequest 在proto定义为oneof类型，所以存在两个req，一个是上传图片info，另外一个是上传图片data内容
+	req := &pb.UploadImageRequest{
+		Data: &pb.UploadImageRequest_Info{
+			Info: &pb.ImageInfo{
+				LaptopId:  laptopID,
+				ImageType: filepath.Ext(imagePath),
+			},
+		},
+	}
+	// 将请求发送给server
+	err = stream.Send(req)
+	if err != nil {
+		err2 := stream.RecvMsg(nil)
+		log.Fatal("can not send image info:", err, err2)
+	}
+	// 以大块读取文件内容
+	reader := bufio.NewReader(file)
+	buffer := make([]byte, 1024)
+
+	for {
+		// 返回字节数和err
+		n, err := reader.Read(buffer)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			log.Fatal("cannot read chunk to buffer: ", err)
+		}
+
+		req := &pb.UploadImageRequest{
+			Data: &pb.UploadImageRequest_ChunkData{
+				ChunkData: buffer[:n],
+			},
+		}
+		// 多次发送image data
+		err = stream.Send(req)
+		if err != nil {
+			err2 := stream.RecvMsg(nil)
+			log.Fatal("cannot send chunk to server: ", err, err2)
+		}
+	}
+	// 关闭并接受请求，此时接受了服务端会返回的信息
+	res, err := stream.CloseAndRecv()
+	if err != nil {
+		log.Fatal("cannot reseive response: ", err)
+	}
+	log.Printf("image uploaded with id: %s, size: %d", res.GetId(), res.GetSize())
+}
+
+func testCreateLaptop(laptopClient pb.LaptopServiceClient) {
+	createLaptop(laptopClient, sample.NewLaptop())
+}
+
+func testSearchLaptop(laptopClient pb.LaptopServiceClient) {
+	// random create 10 laptop
+	for i := 0; i < 10; i++ {
+		createLaptop(laptopClient, sample.NewLaptop())
+	}
+
+	// search laptop
+	filter := &pb.Filter{
+		MaxPriceUsd: 3000,
+		MinCpuCores: 4,
+		MinCpuGhz:   2.5,
+		MinRam: &pb.Memory{
+			Value: 8,
+			Unit:  pb.Memory_GIGABYTE,
+		},
+	}
+	searchLaptop(laptopClient, filter)
+}
+
+func testUploadImage(laptopClient pb.LaptopServiceClient) {
+	laptop := sample.NewLaptop()
+	createLaptop(laptopClient, laptop)
+	uploadImage(laptopClient, laptop.GetId(), "tmp/laptop.jpg")
 }
 
 func main() {
@@ -85,21 +179,6 @@ func main() {
 	}
 
 	laptopClient := pb.NewLaptopServiceClient(conn)
+	testUploadImage(laptopClient)
 
-	// random create 10 laptop
-	for i := 0; i < 10; i++ {
-		createLaptop(laptopClient)
-	}
-
-	// search laptop
-	filter := &pb.Filter{
-		MaxPriceUsd: 3000,
-		MinCpuCores: 4,
-		MinCpuGhz:   2.5,
-		MinRam: &pb.Memory{
-			Value: 8,
-			Unit:  pb.Memory_GIGABYTE,
-		},
-	}
-	searchLaptop(laptopClient, filter)
 }

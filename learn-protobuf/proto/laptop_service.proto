@@ -27,6 +27,7 @@ message SearchLapTopResponse {
 
 // client端一块一块将图片上传到服务端
 message UploadImageRequest {
+    // UploadImageRequest分为图片信息和图片内容两部分
     oneof data {
         ImageInfo info = 1;
         bytes chunk_data = 2;
