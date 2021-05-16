@@ -49,6 +49,7 @@ func (store *DiskImageStore) Save(
 	if err != nil {
 		return "", fmt.Errorf("cannot create image file: %w", err)
 	}
+	defer file.Close()
 	// 将imageData写入文件中
 	_, err = imageData.WriteTo(file)
 	if err != nil {

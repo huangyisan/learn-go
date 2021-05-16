@@ -107,7 +107,7 @@ func (server *LaptopServer) SearchLaptop(req *pb.SearchLapTopRequest, stream pb.
 	return nil
 }
 
-// uploadimage 客户端发送信息
+// uploadimage 客户端发送信息给服务端，服务端如何进行处理
 func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServer) error {
 	req, err := stream.Recv()
 	if err != nil {
@@ -118,6 +118,7 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	imageType := req.GetInfo().GetImageType()
 	log.Printf("receive an upload-image request for laptop %s with image type %s", laptopID, imageType)
 
+	// 确保laptopID存在
 	laptop, err := server.laptopStore.Find(laptopID)
 	if err != nil {
 		return logError(status.Errorf(codes.Internal, "cannot find laptop: %v", err))
