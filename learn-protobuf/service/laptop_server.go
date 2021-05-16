@@ -1,8 +1,10 @@
 package service
 
 import (
+	"bytes"
 	"context"
 	"errors"
+	"io"
 	pb "learn-protobuf/pb"
 	"log"
 
@@ -10,6 +12,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
+
+// 最大图片大小 1MB
+const maxImageSize = 1 << 20
 
 // LaptopServer用于生成laptop
 type LaptopServer struct {
@@ -121,9 +126,59 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 
 	laptop, err := server.laptopStore.Find(laptopID)
 	if err != nil {
-		return logError(status.Errorf(codes.Internal, ""))
+		return logError(status.Errorf(codes.Internal, "cannot find laptop: %v", err))
+	}
+	if laptop == nil {
+		return logError(status.Errorf(codes.InvalidArgument, "laptop %s doesn't exist", laptopID))
 	}
 
+	imageData := bytes.Buffer{}
+	imageSize := 0
+
+	for {
+		log.Print("waiting to receive more data")
+		req, err := stream.Recv()
+		if err == io.EOF {
+			log.Print("no more data")
+			break
+		}
+		if err != nil {
+			return logError(status.Errorf(codes.Unknown, "cannot receive chunk data: %v", err))
+		}
+
+		chunk := req.GetChunkData()
+		size := len(chunk)
+		imageSize += size
+
+		if imageSize > maxImageSize {
+			return logError(status.Errorf(codes.InvalidArgument, "image is too large: %d > %d", imageSize, maxImageSize))
+		}
+
+		_, err = imageData.Write(chunk)
+
+		if err != nil {
+			return logError(status.Errorf(codes.Internal, "cannot write chunk data: %v", err))
+		}
+	}
+
+	imageID, err := server.imageStore.Save(laptopID, imageType, imageData)
+	if err != nil {
+		return logError(status.Errorf(codes.Internal, "cannot save image to the store :%v", err))
+	}
+
+	// create a uploadImageResponse
+	res := &pb.UploadImageResponse{
+		Id:   imageID,
+		Size: uint32(imageSize),
+	}
+
+	// send response
+	err = stream.SendAndClose(res)
+	if err != nil {
+		return logError(status.Errorf(codes.Internal, "can not send upload image response :%v", err))
+	}
+	// save successful
+	log.Printf("saved image with id: %s, size: %d", imageID, imageSize)
 	return nil
 
 }
