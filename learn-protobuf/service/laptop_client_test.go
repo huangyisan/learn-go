@@ -1,6 +1,7 @@
 package service_test
 
 import (
+	"bufio"
 	"context"
 	"fmt"
 	"io"
@@ -8,6 +9,8 @@ import (
 	"learn-protobuf/sample"
 	"learn-protobuf/service"
 	"net"
+	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -113,7 +116,85 @@ func TestClientSearchLaptop(t *testing.T) {
 	}
 	fmt.Printf("%v", expectedIDs)
 	require.Equal(t, len(expectedIDs), found)
+}
 
+func myOpenFile(path string) {
+	file, err := os.Open(path)
+}
+
+func TestClientUploadImage(t *testing.T) {
+	t.Parallel()
+
+	testImageFolder := "../tmp"
+
+	laptopStore := service.NewInMemoryLaptopStore()
+	imageStore := service.NewDiskImageStore(testImageFolder)
+
+	laptop := sample.NewLaptop()
+	err := laptopStore.Save(laptop)
+	require.NoError(t, err)
+
+	serverAddress := startTestLaptopServer(t, laptopStore, imageStore)
+	laptopClient := newTestLaptopClient(t, serverAddress)
+
+	imagePath := fmt.Sprintf("%s/laptop.jpg", testImageFolder)
+	file, err := os.Open(imagePath)
+	require.NoError(t, err)
+	// defer file.Close()
+
+	stream, err := laptopClient.UploadImage(context.Background())
+	require.NoError(t, err)
+	imageType := filepath.Ext(imagePath)
+
+	req := &pb.UploadImageRequest{
+		Data: &pb.UploadImageRequest_Info{
+			Info: &pb.ImageInfo{
+				LaptopId:  laptop.GetId(),
+				ImageType: imageType,
+			},
+		},
+	}
+	// 将请求发送给server
+	err = stream.Send(req)
+	require.NoError(t, err)
+	// 以大块读取文件内容
+	reader := bufio.NewReader(file)
+	buffer := make([]byte, 1024)
+	size := 0
+
+	for {
+		// 返回字节数和err
+		n, err := reader.Read(buffer)
+		if err == io.EOF {
+			file.Close()
+			break
+		}
+		require.NoError(t, err)
+		size += n
+
+		req := &pb.UploadImageRequest{
+			Data: &pb.UploadImageRequest_ChunkData{
+				ChunkData: buffer[:n],
+			},
+		}
+		// 多次发送image data
+		err = stream.Send(req)
+		require.NoError(t, err)
+
+	}
+	// 关闭并接受请求，此时接受了服务端会返回的信息
+	res, err := stream.CloseAndRecv()
+	require.NoError(t, err)
+	require.NotZero(t, res.GetId())
+	require.EqualValues(t, size, res.GetSize())
+
+	// 检查是否生成图片
+	savedImagePath := fmt.Sprintf("%s/%s%s", testImageFolder, res.GetId(), imageType)
+	require.FileExists(t, savedImagePath)
+	// 测试完成后确保删除文件无报错
+
+	err = os.Remove(savedImagePath)
+	require.NoError(t, err)
 }
 
 // start grpc server, 返回laptopServer和监听地址信息
