@@ -1,6 +1,8 @@
 gen:
 	protoc --go_out=pb --go-grpc_out=pb --proto_path=proto proto/*.proto
 
+mv:
+	mv pb/proto/*.go pb/
 clean:
 	rm pb/*.go
 
