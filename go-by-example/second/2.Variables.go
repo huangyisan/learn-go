@@ -64,6 +64,9 @@ func main() {
 	p = &po
 	fmt.Println(*p)
 
+	fmt.Println(string(1+'0'))
+	fmt.Println(1+'0')
+
 
 
 }

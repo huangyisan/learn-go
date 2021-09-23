@@ -46,10 +46,12 @@ for i in animal:
 func main() {
 	dog := &Dog{}
 	cat := &Cat{}
+	// 判断是否都实现了Animal接口
+	var _ Animal = (*Dog)(nil)
+	var _ Animal = (*Cat)(nil)
 
 	animal := []Animal{dog, cat}
 	for _, v := range animal {
 		v.Speak()
 	}
 }
-

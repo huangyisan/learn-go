@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"second/package01"
+)
 
 func main() {
 	fmt.Println("hello worldS")
+	package01.A()
+
 }
