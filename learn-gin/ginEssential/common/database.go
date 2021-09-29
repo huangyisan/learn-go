@@ -16,7 +16,7 @@ func InitDB() *gorm.DB {
 	port := "3306"
 	dbname := "ginessential"
 	charset := "utf8mb4"
-	args := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s",user, pass, ip, port, dbname, charset )
+	args := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=true",user, pass, ip, port, dbname, charset )
 
 	db, err := gorm.Open(mysql.Open(args), &gorm.Config{})
 	if err != nil {
