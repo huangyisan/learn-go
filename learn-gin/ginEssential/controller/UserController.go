@@ -128,6 +128,17 @@ func UserLogin(c *gin.Context) {
 	// 返回结果
 }
 
+// 查询信息
+func Info(c *gin.Context) {
+	// 用户此时为登陆状态，则从上下文中获取用户信息
+	user, _ := c.Get("user")
+	c.JSON(http.StatusOK, gin.H{
+		"data": gin.H{
+			"user": user,
+		},
+	})
+
+}
 
 func isTelephoneExist(db *gorm.DB, telephone string) bool {
 	var user model.User

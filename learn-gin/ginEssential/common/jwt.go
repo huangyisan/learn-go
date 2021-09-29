@@ -36,3 +36,15 @@ func ReleaseToken(user model.User) (string, error) {
 	}
 	return tokenString, nil
 }
+
+// Parse token
+func ParseToken(tokenString string) (*jwt.Token, *Claims, error) {
+	claims := &Claims{}
+
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+		return jwtkey, nil
+	})
+
+	// 解析出token claims并返回
+	return token, claims, err
+}
