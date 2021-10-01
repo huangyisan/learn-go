@@ -1,0 +1,10 @@
+server:
+  port: 8080
+datasource:
+  host: 47.102.119.67
+  port: 3306
+  dbUser: root
+  password: huangyisan
+  charset: utf8mb4
+  dbName: ginessential
+  
