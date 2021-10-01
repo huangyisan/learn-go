@@ -3,13 +3,15 @@ package controller
 import (
 	"fmt"
 	"ginEssential/common"
+	"ginEssential/dto"
 	"ginEssential/model"
 	"ginEssential/util"
+	"log"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
-	"log"
-	"net/http"
 )
 
 func Register(c *gin.Context) {
@@ -29,7 +31,7 @@ func Register(c *gin.Context) {
 		return
 	}
 
-	if len(password) <6 {
+	if len(password) < 6 {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{
 			"message": "密码长度必须大于6位",
 		})
@@ -58,9 +60,9 @@ func Register(c *gin.Context) {
 	}
 
 	newUser := model.User{
-		Name: name,
+		Name:      name,
 		Telephone: telephone,
-		Password: string(hashedPassword),
+		Password:  string(hashedPassword),
 	}
 
 	DB.Create(&newUser)
@@ -84,7 +86,7 @@ func UserLogin(c *gin.Context) {
 		return
 	}
 
-	if len(password) <6 {
+	if len(password) < 6 {
 		c.JSON(http.StatusUnprocessableEntity, gin.H{
 			"message": "密码长度必须大于6位",
 		})
@@ -103,9 +105,9 @@ func UserLogin(c *gin.Context) {
 	// 判断密码
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"message": "密码错误",
+			"message":  "密码错误",
 			"errorMsg": err,
-			"info": user,
+			"info":     user,
 			//"info2": user.Telephone,
 		})
 		return
@@ -123,7 +125,7 @@ func UserLogin(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "登陆成功",
-		"data": gin.H{"code": token},
+		"data":    gin.H{"code": token},
 	})
 	// 返回结果
 }
@@ -132,9 +134,11 @@ func UserLogin(c *gin.Context) {
 func Info(c *gin.Context) {
 	// 用户此时为登陆状态，则从上下文中获取用户信息
 	user, _ := c.Get("user")
+	// a := user.(model.User)
 	c.JSON(http.StatusOK, gin.H{
 		"data": gin.H{
-			"user": user,
+			// Get方法返回的类型为interface, 这里user成了interface类型,则需要断言转换为model.User
+			"user": dto.ToUserDto(user.(model.User)),
 		},
 	})
 
@@ -149,5 +153,3 @@ func isTelephoneExist(db *gorm.DB, telephone string) bool {
 	}
 	return false
 }
-
-

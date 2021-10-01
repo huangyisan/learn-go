@@ -3,8 +3,8 @@ package common
 import (
 	"fmt"
 	"ginEssential/model"
-	"gorm.io/gorm"
 	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
@@ -12,7 +12,8 @@ var DB *gorm.DB
 func InitDB() *gorm.DB {
 	user := "root"
 	pass := "huangyisan"
-	ip := "192.168.200.128"
+	// ip := "192.168.200.128"
+	ip := "47.102.119.67"
 	port := "3306"
 	dbname := "ginessential"
 	charset := "utf8mb4"
