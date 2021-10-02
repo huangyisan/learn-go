@@ -19,9 +19,14 @@ func Register(c *gin.Context) {
 	DB := common.GetDB()
 
 	// 获取参数
-	name := c.PostForm("name")
-	password := c.PostForm("password")
-	telephone := c.PostForm("telephone")
+	var requestUser model.User
+	if err := c.ShouldBind(&requestUser); err != nil {
+		response.Response(c, http.StatusInternalServerError, 422, nil, "数据绑定错误")
+		return
+	}
+	name := requestUser.Name
+	password := requestUser.Password
+	telephone := requestUser.Telephone
 
 	// 参数校验
 	if len(telephone) != 11 {

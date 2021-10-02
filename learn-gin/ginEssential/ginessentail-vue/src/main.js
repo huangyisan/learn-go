@@ -16,14 +16,16 @@ Vue.config.productionTip = false
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+Vue.prototype.axios = axios
+Vue.prototype.vueAxios = VueAxios
+
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
 Vue.use(Vuelidate)
-Vue.use(axios)
-Vue.use(VueAxios)
+// Vue.use(VueAxios)
 
 new Vue({
   router,

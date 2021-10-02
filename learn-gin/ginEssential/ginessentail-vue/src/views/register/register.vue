@@ -67,7 +67,7 @@ export default {
       },
       password: {
         required,
-        minLength: minLength(4),
+        minLength: minLength(6),
       },
     },
   },
@@ -78,7 +78,22 @@ export default {
       return $dirty ? !$error : null;
     },
     register() {
-      console.log("register");
+      // 数据校验
+      this.$v.user.$touch();
+      if (this.$v.user.$anyError) {
+        return;
+      }
+      // 发送数据给后端
+      const api = "http://localhost:8080/api/user/register";
+      this.axios
+        .post(api, { ...this.user })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log("err:", err.response.data.msg);
+        });
+      //   console.log("register");
     },
   },
 };
