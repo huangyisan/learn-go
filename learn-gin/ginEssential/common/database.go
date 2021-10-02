@@ -11,7 +11,7 @@ import (
 
 var DB *gorm.DB
 
-func InitDB(v viper) *gorm.DB {
+func InitDB() *gorm.DB {
 	user := viper.GetString("datasource.dbUser")
 	password := viper.GetString("datasource.password")
 	// ip := "192.168.200.128"
