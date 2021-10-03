@@ -91,6 +91,12 @@ export default {
           console.log(res.data);
         })
         .catch((err) => {
+          this.$bvToast.toast(err.response.data.msg, {
+            title: "error info",
+            variant: "danger",
+            solid: true,
+          });
+
           console.log("err:", err.response.data.msg);
         });
       //   console.log("register");
