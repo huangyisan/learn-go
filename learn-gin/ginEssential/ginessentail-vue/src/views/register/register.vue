@@ -89,6 +89,10 @@ export default {
         .post(api, { ...this.user })
         .then((res) => {
           console.log(res.data);
+          // 使用localStorage保存token
+          localStorage.setItem("token", res.data.data.token);
+          // 跳转主页
+          this.$router.replace({ name: "Home" });
         })
         .catch((err) => {
           this.$bvToast.toast(err.response.data.msg, {
