@@ -84,5 +84,6 @@ func main() {
 	//FindingDuplicateLines()
 	//FindingDuplicateLines1()
 	//FindingDuplicateLines2()
-	FetchingAURL.Fetch()
+	//FetchingAURL.Fetch()
+	FetchingAURL.Fetchall()
 }
