@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io/ioutil"
+	"learn/FetchingAURL"
 	"os"
 	"strings"
 )
@@ -82,5 +83,6 @@ func main() {
 	fmt.Println(s)
 	//FindingDuplicateLines()
 	//FindingDuplicateLines1()
-	FindingDuplicateLines2()
+	//FindingDuplicateLines2()
+	FetchingAURL.Fetch()
 }
