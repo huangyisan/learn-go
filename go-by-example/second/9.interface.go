@@ -7,11 +7,9 @@ type Animal interface {
 }
 
 type Dog struct {
-
 }
 
 type Cat struct {
-
 }
 
 func (dog *Dog) Speak() {
@@ -29,19 +27,19 @@ class Dog(object):
   def __init__(self):
     pass
   def speak(self):
-    print("wang")
+    Mprint("wang")
 
 class Cat(object):
   def __init__(self):
     pass
   def speak(self):
-    print("miao")
+    Mprint("miao")
 
 animal = [Dog(), Cat()]
 
 for i in animal:
   i.speak()
- */
+*/
 
 func main() {
 	dog := &Dog{}
