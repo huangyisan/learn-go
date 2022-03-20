@@ -1,7 +1,9 @@
 package Mprint
 
 import (
+	"bytes"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -49,4 +51,36 @@ func StringToSlice() {
 func StringJoin() {
 	str := []string{"Geeks", "For", "Geeks"}
 	fmt.Println(strings.Join(str, "-"))
+}
+
+func IntsToString(values []int) string {
+	var buf bytes.Buffer
+	buf.WriteByte('[')
+	for i, v := range values {
+		if i > 0 {
+			buf.WriteString(",")
+		}
+		fmt.Fprintf(&buf, "%d", v)
+	}
+	buf.WriteByte(']')
+	return buf.String()
+}
+
+func StringToInt() {
+	x := 123
+	y := fmt.Sprintf("%d", x)
+	fmt.Println(y, strconv.Itoa(x))
+	fmt.Println(strconv.FormatInt(int64(x), 2))
+	s := fmt.Sprintf("x=%b", x)
+	fmt.Println(s)
+}
+
+func IntToString() {
+	//var err error
+	var x int
+	var y int64
+	x, _ = strconv.Atoi("23")
+	y, _ = strconv.ParseInt("123", 10, 64)
+	fmt.Println(x)
+	fmt.Println(y)
 }

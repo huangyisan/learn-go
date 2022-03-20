@@ -19,5 +19,8 @@ func main() {
 	//Mprint.PrintUnicodeLen()
 	//Mprint.CommonPackage()
 	//Mprint.StringToSlice()
-	Mprint.StringJoin()
+	//Mprint.StringJoin()
+	//Mprint.StringToInt()
+	//Mprint.IntToString()
+	Mprint.IotaPrint()
 }
