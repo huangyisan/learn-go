@@ -15,5 +15,6 @@ func main() {
 	//Mprint.ChPrint()
 	//Mprint.FloatPrint()
 	//Mprint.ComplexPrint()
-	Mprint.StringPrint()
+	//Mprint.StringPrint()
+	Mprint.PrintUnicodeLen()
 }
