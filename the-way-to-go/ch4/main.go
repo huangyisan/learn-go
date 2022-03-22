@@ -7,5 +7,9 @@ func main() {
 	//complexA.ListCompare()
 	//complexA.Sha256()
 	//complexA.ChangeZero()
-	complexA.CapLen()
+	//complexA.CapLen()
+	//complexA.NoemptyF()
+	//complexA.SamulateStack()
+	complexA.SliceRemove()
+	//complexA.CopySlice()
 }
