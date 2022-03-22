@@ -10,6 +10,7 @@ func main() {
 	//complexA.CapLen()
 	//complexA.NoemptyF()
 	//complexA.SamulateStack()
-	complexA.SliceRemove()
+	//complexA.SliceRemove()
 	//complexA.CopySlice()
+	complexA.GenMap()
 }
