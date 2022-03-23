@@ -19,5 +19,10 @@ func main() {
 	//complexA.MapOK()
 	//complexA.Add([]string{"a", "b", "c"})
 	//complexA.Pstruct()
-	complexA.CompareStruct()
+	//complexA.CompareStruct()
+	//complexA.DataMashal()
+	//complexA.DataMashalIdent()
+	//complexA.TestQueryEscape([]string{"a", "b", "c", "?", ""})
+	complexA.SearchIssues([]string{"huangyisan"})
+
 }
