@@ -3,6 +3,7 @@ package complexA
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
@@ -50,7 +51,7 @@ func SearchIssues(terms []string) (*IssuesSearchResult, error) {
 		return nil, err
 	}
 	resp.Body.Close()
-	fmt.Printf("%s", &result)
+	//fmt.Printf("%s", &result)
 	return &result, nil
 
 }
@@ -58,4 +59,15 @@ func SearchIssues(terms []string) (*IssuesSearchResult, error) {
 func TestQueryEscape(terms []string) {
 	q := url.QueryEscape(strings.Join(terms, " "))
 	fmt.Println(q)
+}
+
+func PrintIssues() {
+	result, err := SearchIssues([]string{"huangyisan"})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%d issues: \n", result.TotalCount)
+	for _, item := range result.Items {
+		fmt.Printf("#%-5d %9s %.55s\n", item.Number, item.User.Login, item.Title)
+	}
 }

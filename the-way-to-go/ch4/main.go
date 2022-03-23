@@ -1,7 +1,5 @@
 package main
 
-import "learn/complexA"
-
 func main() {
 	//complexA.Mylist()
 	//complexA.ListCompare()
@@ -23,6 +21,9 @@ func main() {
 	//complexA.DataMashal()
 	//complexA.DataMashalIdent()
 	//complexA.TestQueryEscape([]string{"a", "b", "c", "?", ""})
-	complexA.SearchIssues([]string{"huangyisan"})
+	//complexA.SearchIssues([]string{"huangyisan"})
+	//complexA.PrintIssues()
+	//fmt.Printf("%4s\n", "123456")
+	//fmt.Printf("|%.6s|%6s|\n", "foo", "abcdefgg")
 
 }
