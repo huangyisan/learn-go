@@ -3,7 +3,7 @@ package complexA
 import "fmt"
 
 func CapLen() {
-	months := [...]string{1: "January", 2: "2", 3: "3", 12: "December"}
+	months := [...]string{1: "January", 2: "2", 3: "3", 6: "6", 8: "8", 12: "December"}
 	Q2 := months[4:7]
 	summer := months[6:9]
 	fmt.Println(len(months), cap(months))
