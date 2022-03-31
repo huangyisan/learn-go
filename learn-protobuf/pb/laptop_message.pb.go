@@ -282,8 +282,8 @@ var file_laptop_message_proto_depIdxs = []int32{
 	5, // 4: proto.Laptop.screen:type_name -> proto.Screen
 	6, // 5: proto.Laptop.keyboard:type_name -> proto.Keyboard
 	7, // 6: proto.Laptop.updated_at:type_name -> google.protobuf.Timestamp
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for Method output_type
+	7, // [7:7] is the sub-list for Method input_type
 	7, // [7:7] is the sub-list for extension type_name
 	7, // [7:7] is the sub-list for extension extendee
 	0, // [0:7] is the sub-list for field type_name

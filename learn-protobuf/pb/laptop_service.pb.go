@@ -633,8 +633,8 @@ var file_laptop_service_proto_depIdxs = []int32{
 	3,  // 9: proto.LaptopService.SearchLaptop:output_type -> proto.SearchLapTopResponse
 	6,  // 10: proto.LaptopService.UploadImage:output_type -> proto.UploadImageResponse
 	8,  // 11: proto.LaptopService.RateLaptop:output_type -> proto.RateLaptopResponse
-	8,  // [8:12] is the sub-list for method output_type
-	4,  // [4:8] is the sub-list for method input_type
+	8,  // [8:12] is the sub-list for Method output_type
+	4,  // [4:8] is the sub-list for Method input_type
 	4,  // [4:4] is the sub-list for extension type_name
 	4,  // [4:4] is the sub-list for extension extendee
 	0,  // [0:4] is the sub-list for field type_name

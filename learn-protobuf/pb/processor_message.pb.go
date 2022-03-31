@@ -237,8 +237,8 @@ var file_processor_message_proto_goTypes = []interface{}{
 }
 var file_processor_message_proto_depIdxs = []int32{
 	2, // 0: proto.GPU.memory:type_name -> proto.Memory
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for Method output_type
+	1, // [1:1] is the sub-list for Method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name

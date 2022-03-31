@@ -19,7 +19,7 @@ func main() {
 	router.POST("/profile", func(c *gin.Context) {
 		// you can bind multipart form with explicit binding declaration:
 		// c.ShouldBindWith(&form, binding.Form)
-		// or you can simply use autobinding with ShouldBind method:
+		// or you can simply use autobinding with ShouldBind Method:
 		var form ProfileForm
 		// in this case proper binding will be automatically selected
 		if err := c.ShouldBind(&form); err != nil {

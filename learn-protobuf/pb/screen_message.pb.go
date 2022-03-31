@@ -245,8 +245,8 @@ var file_screen_message_proto_goTypes = []interface{}{
 var file_screen_message_proto_depIdxs = []int32{
 	2, // 0: proto.Screen.resolution:type_name -> proto.Screen.Resolution
 	0, // 1: proto.Screen.panel:type_name -> proto.Screen.Panel
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for Method output_type
+	2, // [2:2] is the sub-list for Method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name

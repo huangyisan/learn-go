@@ -154,16 +154,16 @@ type UnimplementedLaptopServiceServer struct {
 }
 
 func (UnimplementedLaptopServiceServer) CreateLaptop(context.Context, *CreateLaptopRequest) (*CreateLaptopResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateLaptop not implemented")
+	return nil, status.Errorf(codes.Unimplemented, "Method CreateLaptop not implemented")
 }
 func (UnimplementedLaptopServiceServer) SearchLaptop(*SearchLapTopRequest, LaptopService_SearchLaptopServer) error {
-	return status.Errorf(codes.Unimplemented, "method SearchLaptop not implemented")
+	return status.Errorf(codes.Unimplemented, "Method SearchLaptop not implemented")
 }
 func (UnimplementedLaptopServiceServer) UploadImage(LaptopService_UploadImageServer) error {
-	return status.Errorf(codes.Unimplemented, "method UploadImage not implemented")
+	return status.Errorf(codes.Unimplemented, "Method UploadImage not implemented")
 }
 func (UnimplementedLaptopServiceServer) RateLaptop(LaptopService_RateLaptopServer) error {
-	return status.Errorf(codes.Unimplemented, "method RateLaptop not implemented")
+	return status.Errorf(codes.Unimplemented, "Method RateLaptop not implemented")
 }
 func (UnimplementedLaptopServiceServer) mustEmbedUnimplementedLaptopServiceServer() {}
 

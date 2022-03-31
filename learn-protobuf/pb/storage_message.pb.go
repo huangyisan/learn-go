@@ -165,8 +165,8 @@ var file_storage_message_proto_goTypes = []interface{}{
 var file_storage_message_proto_depIdxs = []int32{
 	0, // 0: proto.Storage.driver:type_name -> proto.Storage.Driver
 	2, // 1: proto.Storage.memory:type_name -> proto.Memory
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for Method output_type
+	2, // [2:2] is the sub-list for Method input_type
 	2, // [2:2] is the sub-list for extension type_name
 	2, // [2:2] is the sub-list for extension extendee
 	0, // [0:2] is the sub-list for field type_name

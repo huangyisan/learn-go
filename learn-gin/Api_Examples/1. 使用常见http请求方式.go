@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"fmt"
+	"github.com/gin-gonic/gin"
 )
 
 func test(c *gin.Context) {
 	req := c.Request
 	c.JSON(200, gin.H{
-		"method": req.Method,
-		"URL": req.URL,
+		"Method": req.Method,
+		"URL":    req.URL,
 	})
 	fmt.Println("一个请求成功后的测试打印")
 }

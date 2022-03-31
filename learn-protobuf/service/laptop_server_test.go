@@ -95,7 +95,7 @@ func TestServerCreateLaptop(t *testing.T) {
 				require.Error(t, err)
 				// 确保res返回为nil
 				require.Nil(t, res)
-				// 确保error是由this package or has a method `GRPCStatus() *Status`. 而非其他异常导致的.
+				// 确保error是由this package or has a Method `GRPCStatus() *Status`. 而非其他异常导致的.
 				st, ok := status.FromError(err)
 				require.True(t, ok)
 				//期望的code和结果的code一致
