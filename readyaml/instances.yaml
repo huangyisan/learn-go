@@ -1,0 +1,6 @@
+---
+instances:
+  - instanceId: i-0f35d4275146e090d
+    service: web-fe
+  - instanceId: i-0e575e36642d344c9
+    service: game-online
