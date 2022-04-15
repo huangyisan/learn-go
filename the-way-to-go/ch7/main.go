@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"learn/InterFace"
+	"os"
 )
 
 var c InterFace.ByteCounter
@@ -14,4 +17,14 @@ func main() {
 	var name = "Dolly"
 	fmt.Fprintf(&c, "hello, %s", name)
 	fmt.Println(c) // "12", = len("hello, Dolly")
+
+	// assert
+	var w io.Writer = os.Stdout
+	if _, ok := w.(*os.File); ok {
+
+	} // success:  ok, f == os.Stdout
+	if _, ok := w.(*bytes.Buffer); ok {
+
+	} // failure: !ok, b == nil
+
 }
