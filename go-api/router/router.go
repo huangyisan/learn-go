@@ -2,12 +2,29 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	sd "go-api/handler"
+	"go-api/router/middleware"
+	"net/http"
 )
-import "goapi/handler/user"
 
+func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
+	// MiddleWares
+	g.Use(gin.Recovery())
+	g.Use(middleware.NoCache)
+	g.Use(middleware.Options)
+	g.Use(middleware.Secure)
+	// 404 handler
+	g.NoRoute(func(c *gin.Context) {
+		c.String(http.StatusNotFound, "The incorrect API route.")
+	})
 
-func Router(r *gin.Engine) *gin.Engine {
-	r.POST("/api/v1/register", user.Register)
-	r.POST("/api/v1/auth", user.Auth)
-	return r
+	// health check
+	svcd := g.Group("/sd")
+	{
+		svcd.GET("/health", sd.HealthCheck)
+		svcd.GET("/disk", sd.DiskCheck)
+		svcd.GET("/cpu", sd.CPUCheck)
+		svcd.GET("/ram", sd.RAMCheck)
+	}
+	return g
 }
