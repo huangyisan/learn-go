@@ -6,3 +6,9 @@ import "gorm.io/gorm"
 type DataBase struct {
 	Self *gorm.DB
 }
+
+func (db *DataBase) Init() {
+	DB = &DataBase{
+		viper.G
+	}
+}
