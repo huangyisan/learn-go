@@ -3,7 +3,8 @@ package errno
 import "fmt"
 
 type Errno struct {
-	Code    int
+	Code int
+	// 这个是给用户看的error信息
 	Message string
 }
 
@@ -16,7 +17,8 @@ func (err Errno) Error() string {
 type Err struct {
 	Code    int
 	Message string
-	Err     error
+	// Err是给开发查看的error信息
+	Err error
 }
 
 func New(errno *Errno, err error) *Err {
@@ -29,6 +31,7 @@ func (err *Err) Error() string {
 }
 
 // 因为Err实现了error接口, 所以可以直接作为error类型被return
+// 可以自定义追加给用户的报错信息.
 func (err *Err) Add(message string) error {
 	//err.Message = fmt.Sprintf("%s %s", err.Message, message)
 	err.Message += " " + message
@@ -47,6 +50,7 @@ func IsErrUserNotFound(err error) bool {
 	return code == ErrUserNotFound.Code
 }
 
+// 解析error
 func DecodeErr(err error) (int, string) {
 	if err == nil {
 		return OK.Code, OK.Message
