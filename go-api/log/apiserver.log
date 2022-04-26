@@ -1,3 +1,18 @@
 {"level":"INFO","timestamp":"2022-04-25 15:50:38.396","file":"go-api/main.go:39","msg":"Start to listening the incoming requests on http address: :6663"}
 {"level":"INFO","timestamp":"2022-04-25 15:50:38.408","file":"go-api/main.go:49","msg":"Waiting for the router, retry in 1 second."}
 {"level":"INFO","timestamp":"2022-04-25 15:50:39.423","file":"go-api/main.go:36","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-04-25 19:29:14.664","file":"go-api/main.go:39","msg":"Start to listening the incoming requests on http address: :6663"}
+{"level":"INFO","timestamp":"2022-04-25 19:29:14.676","file":"go-api/main.go:49","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-04-25 19:29:15.693","file":"go-api/main.go:36","msg":"The router has been deployed successfully."}
+{"level":"ERROR","timestamp":"2022-04-25 19:33:54.333","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-25 19:33:54.339","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :6663"}
+{"level":"INFO","timestamp":"2022-04-25 19:33:54.351","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"ERROR","timestamp":"2022-04-26 16:48:01.891","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-26 16:48:01.898","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :6663"}
+{"level":"INFO","timestamp":"2022-04-26 16:48:01.912","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"DEBUG","timestamp":"2022-04-26 16:48:59.537","file":"user/create.go:20","msg":"username is: [], password is []"}
+{"level":"ERROR","timestamp":"2022-04-26 16:48:59.538","file":"user/create.go:23","msg":"Get an error","data":{"error":"Err - code: 20102, message: The user was not found. This is add message., error: username can not found in db: xx.xx.xx.xx"}}
+{"level":"DEBUG","timestamp":"2022-04-26 16:48:59.538","file":"user/create.go:27","msg":"err type is ErrUserNotFound"}
+{"level":"DEBUG","timestamp":"2022-04-26 16:56:27.690","file":"user/create.go:20","msg":"username is: [], password is []"}
+{"level":"ERROR","timestamp":"2022-04-26 16:56:27.690","file":"user/create.go:23","msg":"Get an error","data":{"error":"Err - code: 20102, message: The user was not found. This is add message., error: username can not found in db: xx.xx.xx.xx"}}
+{"level":"DEBUG","timestamp":"2022-04-26 16:56:27.690","file":"user/create.go:27","msg":"err type is ErrUserNotFound"}

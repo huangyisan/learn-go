@@ -16,6 +16,7 @@ require (
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
 	github.com/zxmrlc/log v0.0.0-20200612082315-9e0c7ff11ddb
+	gorm.io/driver/mysql v1.3.3
 	gorm.io/gorm v1.23.4
 )
 
@@ -25,6 +26,7 @@ require (
 	github.com/go-playground/locales v0.13.0 // indirect
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/go-playground/validator/v10 v10.4.1 // indirect
+	github.com/go-sql-driver/mysql v1.6.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect

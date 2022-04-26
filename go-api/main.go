@@ -7,6 +7,7 @@ import (
 	"github.com/spf13/viper"
 	"github.com/zxmrlc/log"
 	"go-api/config"
+	"go-api/model"
 	"go-api/router"
 	"net/http"
 	"time"
@@ -23,6 +24,13 @@ func main() {
 		panic(err)
 	}
 
+	// init DB
+	model.DB.Init()
+	defer model.DB.Close()
+
+	// Set gin mode.
+	gin.SetMode(viper.GetString("runmode"))
+	
 	g := gin.New()
 
 	middlewares := []gin.HandlerFunc{}

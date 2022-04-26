@@ -3,6 +3,7 @@ package router
 import (
 	"github.com/gin-gonic/gin"
 	sd "go-api/handler"
+	"go-api/handler/user"
 	"go-api/router/middleware"
 	"net/http"
 )
@@ -18,6 +19,10 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		c.String(http.StatusNotFound, "The incorrect API route.")
 	})
 
+	u := g.Group("/v1/user")
+	{
+		u.POST("", user.Create)
+	}
 	// health check
 	svcd := g.Group("/sd")
 	{
