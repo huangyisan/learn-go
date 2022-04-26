@@ -2,7 +2,7 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	sd "go-api/handler"
+	"go-api/handler/sd"
 	"go-api/handler/user"
 	"go-api/router/middleware"
 	"net/http"
@@ -21,7 +21,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	u := g.Group("/v1/user")
 	{
-		u.POST("", user.Create)
+		// 这里:username 对应了params
+		u.POST("/:username", user.Create)
 	}
 	// health check
 	svcd := g.Group("/sd")
