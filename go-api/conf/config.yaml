@@ -16,7 +16,7 @@ log:
 
 db:
   name: db_apiserver
-  addr: 47.102.119.67:3306
+  addr: 127.0.0.1:3306
   username: root
   password: huangyisan
 
