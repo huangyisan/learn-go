@@ -1,55 +1,49 @@
 package user
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/zxmrlc/log"
+	"github.com/zxmrlc/log/lager"
 	. "go-api/handler"
+	"go-api/model"
 	"go-api/pkg/errno"
+	"go-api/util"
 )
 
 func Create(c *gin.Context) {
+	log.Info("User Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
+
 	var r CreateRequest
 	if err := c.ShouldBind(&r); err != nil {
 		SendResponse(c, errno.ErrBind, nil)
 		return
 	}
 
-	admin2 := c.Param("username")
-	log.Infof("URL username: %s", admin2)
+	u := model.UserModel{
+		Username: r.Username,
+		Password: r.Password,
+	}
 
-	desc := c.Query("desc")
-	log.Infof("URL key param desc: %s", desc)
-
-	contentType := c.GetHeader("Content-Type")
-	log.Infof("Header Content-Type: %s", contentType)
-
-	log.Debugf("username is: [%s], password is [%s]", r.Username, r.Password)
-
-	if r.Username == "" {
-		err := errno.New(errno.ErrUserNotFound, fmt.Errorf("username can not found in db: xx.xx.xx.xx")).Add("This is add message.")
-
-		//这里对err进行判断是否为user not found类型,方便如果上面username没填写触发的error 进行比对.
-		if errno.IsErrUserNotFound(err) {
-			log.Debug("err type is ErrUserNotFound")
-		}
-
-		SendResponse(c, err, nil)
-		// 这里打印出了error 给到开发人员
-		log.Errorf(err, "Get an error")
+	//结构体验证
+	if err := u.Validate(); err != nil {
+		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
-	if r.Password == "" {
-		SendResponse(c, fmt.Errorf("password is empty"), nil)
+	// 密码加密
+	if err := u.Encrypt(); err != nil {
+		SendResponse(c, errno.ErrEncrypt, nil)
+		return
+	}
+	// 插入数据库
+	if err := u.Create(); err != nil {
+		SendResponse(c, errno.ErrDatabase, nil)
 		return
 	}
 
 	rsp := CreateResponse{
 		Username: r.Username,
 	}
-
-	// Show the user information.
 	SendResponse(c, nil, rsp)
 
 }

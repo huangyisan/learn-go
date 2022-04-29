@@ -22,7 +22,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	u := g.Group("/v1/user")
 	{
 		// 这里:username 对应了params
-		u.POST("/:username", user.Create)
+		u.POST("", user.Create)
 	}
 	// health check
 	svcd := g.Group("/sd")

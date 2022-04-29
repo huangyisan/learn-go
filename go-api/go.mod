@@ -13,6 +13,7 @@ require (
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.19.0 // indirect
 	github.com/spf13/viper v1.11.0
+	github.com/teris-io/shortid v0.0.0-20201117134242-e59966efd125
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
 	github.com/zxmrlc/log v0.0.0-20200612082315-9e0c7ff11ddb

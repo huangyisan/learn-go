@@ -104,3 +104,47 @@
 {"level":"ERROR","timestamp":"2022-04-27 00:13:05.187","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
 {"level":"INFO","timestamp":"2022-04-27 00:13:05.188","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
 {"level":"INFO","timestamp":"2022-04-27 00:13:05.200","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-04-27 00:22:48.840","file":"user/create.go:19","msg":"URL username: admin2"}
+{"level":"INFO","timestamp":"2022-04-27 00:22:48.840","file":"user/create.go:22","msg":"URL key param desc: test"}
+{"level":"INFO","timestamp":"2022-04-27 00:22:48.840","file":"user/create.go:25","msg":"Header Content-Type: application/json"}
+{"level":"DEBUG","timestamp":"2022-04-27 00:22:48.841","file":"user/create.go:27","msg":"username is: [], password is []"}
+{"level":"DEBUG","timestamp":"2022-04-27 00:22:48.841","file":"user/create.go:34","msg":"err type is ErrUserNotFound"}
+{"level":"ERROR","timestamp":"2022-04-27 00:22:48.841","file":"user/create.go:39","msg":"Get an error","data":{"error":"Err - code: 20102, message: The user was not found. This is add message., error: username can not found in db: xx.xx.xx.xx"}}
+{"level":"ERROR","timestamp":"2022-04-27 00:24:42.948","file":"model/init.go:31","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"ERROR","timestamp":"2022-04-27 00:24:42.952","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-27 00:24:42.953","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-04-27 00:24:42.972","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"ERROR","timestamp":"2022-04-27 00:25:07.993","file":"model/init.go:31","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"ERROR","timestamp":"2022-04-27 00:25:07.998","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-27 00:25:07.999","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-04-27 00:25:08.006","file":"go-api/main.go:57","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-04-27 00:25:09.022","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-04-27 00:33:35.293","file":"config/config.go:67","msg":"Config file changed: /Users/huangyisan/Desktop/github/learn-go/go-api/conf/config.yaml"}
+{"level":"ERROR","timestamp":"2022-04-27 19:52:56.025","file":"model/init.go:31","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"ERROR","timestamp":"2022-04-27 19:52:56.030","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-27 19:52:56.031","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-04-27 19:52:56.043","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"ERROR","timestamp":"2022-04-27 19:54:02.885","file":"model/init.go:31","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"ERROR","timestamp":"2022-04-27 19:54:02.889","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-27 19:54:02.891","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-04-27 19:54:02.903","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-04-27 19:54:09.281","file":"util/util.go:14","msg":"\u0026{{0xc0003520e0 -1 200} 0xc0001c0d00 0xc0001c0e00 [] [0x44deda0 0x4619620 0x4619780 0x4619900 0x4618f40] 4 /v1/user 0xc0000829c0 0xc000129230 0xc000129248 {{0 0} 0 0 0 0} map[]  [] map[] map[] 0}"}
+{"level":"INFO","timestamp":"2022-04-27 19:54:09.281","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"INFO","timestamp":"2022-04-27 19:54:09.289","file":"user/create.go:23","msg":"URL username: "}
+{"level":"INFO","timestamp":"2022-04-27 19:54:09.291","file":"user/create.go:26","msg":"URL key param desc: "}
+{"level":"INFO","timestamp":"2022-04-27 19:54:09.291","file":"user/create.go:29","msg":"Header Content-Type: application/json"}
+{"level":"DEBUG","timestamp":"2022-04-27 19:54:09.291","file":"user/create.go:31","msg":"username is: [], password is []"}
+{"level":"DEBUG","timestamp":"2022-04-27 19:54:09.291","file":"user/create.go:38","msg":"err type is ErrUserNotFound"}
+{"level":"ERROR","timestamp":"2022-04-27 19:54:09.292","file":"user/create.go:43","msg":"Get an error","data":{"error":"Err - code: 20102, message: The user was not found. This is add message., error: username can not found in db: xx.xx.xx.xx"}}
+{"level":"ERROR","timestamp":"2022-04-27 19:56:00.365","file":"model/init.go:31","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"ERROR","timestamp":"2022-04-27 19:56:00.369","file":"model/init.go:31","msg":"Database connection failed. Database name: ","data":{"error":"dial tcp 127.0.0.1:3306: connect: connection refused"}}
+{"level":"INFO","timestamp":"2022-04-27 19:56:00.371","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-04-27 19:56:00.388","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-04-27 19:56:01.245","file":"util/util.go:14","msg":"11111\u0026{{0xc0003e01c0 -1 200} 0xc0001c0100 0xc0001c0000 [] [0x44ded80 0x4619600 0x4619760 0x46198e0 0x4618f20] 4 /v1/user 0xc000329040 0xc000092030 0xc000092048 {{0 0} 0 0 0 0} map[]  [] map[] map[] 0}"}
+{"level":"INFO","timestamp":"2022-04-27 19:56:01.245","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"INFO","timestamp":"2022-04-27 19:56:01.255","file":"user/create.go:23","msg":"URL username: "}
+{"level":"INFO","timestamp":"2022-04-27 19:56:01.255","file":"user/create.go:26","msg":"URL key param desc: "}
+{"level":"INFO","timestamp":"2022-04-27 19:56:01.255","file":"user/create.go:29","msg":"Header Content-Type: application/json"}
+{"level":"DEBUG","timestamp":"2022-04-27 19:56:01.255","file":"user/create.go:31","msg":"username is: [], password is []"}
+{"level":"DEBUG","timestamp":"2022-04-27 19:56:01.255","file":"user/create.go:38","msg":"err type is ErrUserNotFound"}
+{"level":"ERROR","timestamp":"2022-04-27 19:56:01.255","file":"user/create.go:43","msg":"Get an error","data":{"error":"Err - code: 20102, message: The user was not found. This is add message., error: username can not found in db: xx.xx.xx.xx"}}
