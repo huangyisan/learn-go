@@ -21,6 +21,7 @@ func NoCache(c *gin.Context) {
 // chain and ends the request.
 func Options(c *gin.Context) {
 	if c.Request.Method != "OPTIONS" {
+		// Next代表继续执行下个中间件 -> 路由函数
 		c.Next()
 	} else {
 		c.Header("Access-Control-Allow-Origin", "*")

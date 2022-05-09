@@ -185,3 +185,29 @@
 {"level":"INFO","timestamp":"2022-05-09 10:53:11.883","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
 {"level":"INFO","timestamp":"2022-05-09 10:53:11.904","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
 {"level":"INFO","timestamp":"2022-05-09 10:53:33.721","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"ERROR","timestamp":"2022-05-09 14:32:46.784","file":"model/init.go:31","msg":"Database connection failed. Database name: db_apiserver","data":{"error":"Error 1045: Access denied for user 'root'@'101.229.53.127' (using password: YES)"}}
+{"level":"INFO","timestamp":"2022-05-09 14:32:46.858","file":"go-api/main.go:48","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 14:32:46.871","file":"go-api/main.go:45","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 14:32:57.531","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"INFO","timestamp":"2022-05-09 14:33:15.621","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"INFO","timestamp":"2022-05-09 14:33:35.637","file":"config/config.go:67","msg":"Config file changed: /Users/huangyisan/Desktop/github/learn-go/go-api/conf/config.yaml"}
+{"level":"INFO","timestamp":"2022-05-09 14:33:42.255","file":"go-api/main.go:48","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 14:33:42.263","file":"go-api/main.go:58","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-05-09 14:33:43.285","file":"go-api/main.go:45","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 14:33:47.933","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"INFO","timestamp":"2022-05-09 14:33:51.782","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}
+{"level":"INFO","timestamp":"2022-05-09 14:35:47.390","file":"go-api/main.go:48","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 14:35:47.398","file":"go-api/main.go:58","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-05-09 14:35:48.418","file":"go-api/main.go:45","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 14:37:01.417","file":"go-api/main.go:51","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 14:37:01.427","file":"go-api/main.go:61","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-05-09 14:37:02.444","file":"go-api/main.go:48","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 14:40:59.472","file":"go-api/main.go:51","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 14:40:59.480","file":"go-api/main.go:61","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-05-09 14:41:00.490","file":"go-api/main.go:48","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 14:43:17.739","file":"go-api/main.go:51","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 14:43:17.748","file":"go-api/main.go:61","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-05-09 14:43:18.778","file":"middleware/requestid.go:25","msg":"this is cccc, %!s(MISSING)"}
+{"level":"INFO","timestamp":"2022-05-09 14:43:18.780","file":"go-api/main.go:48","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 14:43:19.754","file":"middleware/requestid.go:25","msg":"this is cccc, %!s(MISSING)"}
+{"level":"INFO","timestamp":"2022-05-09 14:43:19.925","file":"middleware/logging.go:85","msg":"164.369ms     | 127.0.0.1    | GET /v1/user | {code: 0, message: OK}"}

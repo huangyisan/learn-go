@@ -9,6 +9,7 @@ import (
 	"go-api/config"
 	"go-api/model"
 	"go-api/router"
+	"go-api/router/middleware"
 	"net/http"
 	"time"
 )
@@ -30,11 +31,14 @@ func main() {
 
 	// Set gin mode.
 	gin.SetMode(viper.GetString("runmode"))
-	
+
 	g := gin.New()
 
-	middlewares := []gin.HandlerFunc{}
-	router.Load(g, middlewares...)
+	//middlewares := []gin.HandlerFunc{}
+	router.Load(g,
+		middleware.RequestId(),
+		middleware.Logging(),
+	)
 
 	// 使用gorouting的方式去ping,否则http进程未启动
 	go func() {
