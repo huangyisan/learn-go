@@ -179,3 +179,9 @@
 {"level":"INFO","timestamp":"2022-05-09 10:43:47.820","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
 {"level":"INFO","timestamp":"2022-05-09 10:43:47.830","file":"go-api/main.go:57","msg":"Waiting for the router, retry in 1 second."}
 {"level":"INFO","timestamp":"2022-05-09 10:43:48.844","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 10:47:07.138","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 10:47:07.147","file":"go-api/main.go:57","msg":"Waiting for the router, retry in 1 second."}
+{"level":"INFO","timestamp":"2022-05-09 10:47:08.162","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 10:53:11.883","file":"go-api/main.go:47","msg":"Start to listening the incoming requests on http address: :8080"}
+{"level":"INFO","timestamp":"2022-05-09 10:53:11.904","file":"go-api/main.go:44","msg":"The router has been deployed successfully."}
+{"level":"INFO","timestamp":"2022-05-09 10:53:33.721","file":"user/create.go:14","msg":"User Create function called.","data":{"X-Request-Id":""}}

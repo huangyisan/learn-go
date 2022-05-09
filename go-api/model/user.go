@@ -79,3 +79,8 @@ func ListUser(username string, offset, limit int) ([]*UserModel, int64, error) {
 	}
 	return users, count, nil
 }
+
+// 自定义表名, 如果不定义,那么就是文件名_models,例如这里就是user_models
+func (c *UserModel) TableName() string {
+	return "tb_users"
+}
