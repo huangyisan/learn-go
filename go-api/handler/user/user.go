@@ -19,6 +19,6 @@ type ListRequest struct {
 }
 
 type ListResponse struct {
-	TotalCount uint64            `json:"totalCount"`
+	TotalCount int64             `json:"totalCount"`
 	UserList   []*model.UserInfo `json:"userList"`
 }
