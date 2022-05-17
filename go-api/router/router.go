@@ -17,6 +17,8 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	g.Use(mw...)
 	// 404 handler
 	g.NoRoute(func(c *gin.Context) {
+		_, header, err := c.Request.FormFile("files")
+		header.Size
 		c.String(http.StatusNotFound, "The incorrect API route.")
 	})
 
