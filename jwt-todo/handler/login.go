@@ -33,3 +33,17 @@ func Login(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, tokens)
 }
+
+func Logout(c *gin.Context) {
+	au, err := ExtractTokenMetadata(c.Request)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, "unauthorized")
+		return
+	}
+	deleted, delErr := DeleteAuth(au.AccessUuid)
+	if delErr != nil || deleted == 0 {
+		c.JSON(http.StatusUnauthorized, "unauthorized")
+		return
+	}
+	c.JSON(http.StatusOK, "logout Successfully")
+}
