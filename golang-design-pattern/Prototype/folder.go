@@ -16,5 +16,14 @@ func (f *folder) print(indentation string) {
 }
 
 func (f *folder) clone() inode {
-
+	cloneFolder := &folder{
+		name: f.name,
+	}
+	var tmpChildren []inode
+	for _, i := range f.children {
+		cCopy := i.clone()
+		tmpChildren = append(tmpChildren, cCopy)
+	}
+	cloneFolder.children = tmpChildren
+	return cloneFolder
 }
