@@ -15,36 +15,46 @@ import (
 	"strings"
 )
 
-type LogTransfer struct {
-	From  common.Address
-	To    common.Address
-	Value *big.Int
-}
-
 func main() {
+	// 订阅事件则用wss协议去连接node节点,然后订阅合约地址
+	client, err := ethclient.Dial("https://u0lvw6c3lk:7vUkST4yxgKT_yjF5laCagbtYNCkw0ZOQIYv-FteCvE@u0avnfe4vh-u0j18z3adv-rpc.us0-aws.kaleido.io/")
+	//client, err := ethclient.Dial("ws://localhost:7545")
+	//rpcClient, err := rpc.Dial("wss://u0avnfe4vh-u0j18z3adv-wss.us0-aws.kaleido.io/")
 
-	//client, err := ethclient.Dial("wss://bsc-ws-node.nariox.org")
-
-        client, err := ethclient.Dial("https://bsc-dataseed3.binance.org")
 	if err != nil {
-		log.Fatalf("Oops! There was a problem", err)
+		log.Fatal(err)
 	}
-	defer client.Close()
 
-	contractAddress := common.HexToAddress("0x26193C7fa4354AE49eC53eA2cEBC513dc39A10aa")
-	//add := common.HexToAddress("0xF489d5EfA3dA8B426F86cb4Df30edBf3f321913d")
+	// 合约中Transfer方法结构体
+	type LogTransfer struct {
+		From  common.Address
+		To    common.Address
+		Value *big.Int
+	}
+
+	// 创建筛选查询
+	contractAddress := common.HexToAddress("0x9c7cad41c2a2b9aefe3721386743321f098cc6cc")
+	// block range 51150 - 51160
 	query := ethereum.FilterQuery{
-		FromBlock: big.NewInt(17104780),
-		ToBlock:   big.NewInt(17104790),
+		FromBlock: big.NewInt(51150),
+		//ToBlock:   big.NewInt(51160),
 		Addresses: []common.Address{contractAddress},
 	}
 
+	// 客户端调用SubscribeFilterLogs来订阅.
 	logs, err := client.FilterLogs(context.Background(), query)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	file, err := os.Open("abi.json")
+	// 使用select语句设置一个连续循环来读入新的日志事件或订阅错误
+	fmt.Println("start to subscribe")
+	// 函数签名
+	logTransferSig := []byte("Transfer(address,address,uint256)")
+	logTransferSigHash := crypto.Keccak256Hash(logTransferSig)
+
+	// 读取abi文件
+	file, err := os.Open("kaleido_abi.json")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -55,33 +65,23 @@ func main() {
 		log.Fatal(err)
 	}
 
-	logTransferSig := []byte("Transfer(address,address,uint256)")
-	logTransferSigHash := crypto.Keccak256Hash(logTransferSig)
-
 	for _, vLog := range logs {
 		fmt.Printf("Log Block Number: %d\n", vLog.BlockNumber)
-		fmt.Printf("Log Index: %d\n", vLog.Index)
-
 		switch vLog.Topics[0].Hex() {
 		case logTransferSigHash.Hex():
 			fmt.Printf("Log Name: Transfer\n")
-
 			var transferEvent LogTransfer
-
 			err := contractAbi.UnpackIntoInterface(&transferEvent, "Transfer", vLog.Data)
 			if err != nil {
-				fmt.Println("xxxxx")
+				fmt.Println("error")
 				log.Fatal(err)
 			}
-
 			transferEvent.From = common.HexToAddress(vLog.Topics[1].Hex())
 			transferEvent.To = common.HexToAddress(vLog.Topics[2].Hex())
 
 			fmt.Printf("From: %s\n", transferEvent.From.Hex())
 			fmt.Printf("To: %s\n", transferEvent.To.Hex())
-			fmt.Printf("Values: %s\n", transferEvent.Value.String())
-		default:
-			fmt.Println("no log")
+			fmt.Printf("Tokens: %s\n", transferEvent.Value.String())
 		}
 	}
 }

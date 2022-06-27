@@ -1,4 +1,4 @@
-module go-etherem-tutorial
+module events
 
 go 1.17
 
