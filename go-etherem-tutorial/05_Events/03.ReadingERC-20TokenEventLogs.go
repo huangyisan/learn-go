@@ -77,7 +77,7 @@ func main() {
 			fmt.Printf("Log Name: Transfer\n")
 
 			var transferEvent LogTransfer
-
+			// 解包不会解析indexed事件类型，因为它们存储在topics下，
 			err := contractAbi.UnpackIntoInterface(&transferEvent, "Transfer", vLog.Data)
 			if err != nil {
 				fmt.Println("error")
@@ -90,6 +90,7 @@ func main() {
 			fmt.Printf("From: %s\n", transferEvent.From.Hex())
 			fmt.Printf("To: %s\n", transferEvent.To.Hex())
 			fmt.Printf("Tokens: %s\n", transferEvent.Value.String())
+			//fmt.Printf("Tokens: %v\n",)
 
 			//case logApprovalSigHash.Hex():
 			//	fmt.Printf("Log Name: Approval\n")
