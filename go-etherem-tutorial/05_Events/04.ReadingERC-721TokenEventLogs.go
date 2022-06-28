@@ -19,7 +19,7 @@ type LogTokenTransfer struct {
 }
 
 func main() {
-	client, err := ethclient.Dial("https://bsc-dataseed3.binance.org")
+	client, err := ethclient.Dial("http://54.178.71.35/rpc")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -77,6 +77,7 @@ func main() {
 
 			fmt.Printf("From: %s\n", transferEvent.From.Hex())
 			fmt.Printf("To: %s\n", transferEvent.To.Hex())
+			// tokens 处于topics中第三个位置
 			fmt.Printf("Tokens: %s\n", vLog.Topics[3].Big())
 			//fmt.Printf("Tokens: %v\n", transferEvent)
 

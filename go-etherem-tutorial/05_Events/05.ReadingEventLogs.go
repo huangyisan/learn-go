@@ -67,7 +67,7 @@ func main() {
 			fmt.Printf("Log Name: feeBurnedSig\n")
 
 			var feeBurned FeeBurned
-
+			// indexed的数据是不需要unpack的,唯有当需要读取非indexed的数据才需要.
 			err := contractAbi.UnpackIntoInterface(&feeBurned, "feeBurned", vLog.Data)
 			if err != nil {
 				fmt.Println("error")
