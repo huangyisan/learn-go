@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package helloWorld;
+option go_package = "learn-protobuf/hello_world/helloWorld";
+
+message ResponseMessage {
+  string response_string = 1;
+}
+
+message ReceiveMessage {
+  string receive_string = 1;
+}
+service PrintHello {
+  rpc PrintHelloWorld(ReceiveMessage) returns (ResponseMessage) {}
+}
