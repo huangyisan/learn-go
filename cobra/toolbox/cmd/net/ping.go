@@ -5,8 +5,11 @@ package net
 
 import (
 	"fmt"
-
 	"github.com/spf13/cobra"
+)
+
+var (
+	urlPath string
 )
 
 // pingCmd represents the ping command
@@ -20,11 +23,16 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("ping called")
+		fmt.Println(urlPath)
 	},
 }
 
 func init() {
+	pingCmd.Flags().StringVarP(&urlPath, "url", "u", "www.baidu.com", "The url to ping")
+	// if -u is not exist, then throw error
+	if err := pingCmd.MarkFlagRequired("url"); err != nil {
+		fmt.Println(err)
+	}
 	NetCmd.AddCommand(pingCmd)
 	// Here you will define your flags and configuration settings.
 
