@@ -1,0 +1,10 @@
+Name: order-api
+Host: 0.0.0.0
+Port: 8888
+
+UserRpc:
+  Etcd:
+    Hosts:
+      - 127.0.0.1:2379
+    # 通过user.rpc这个key从etcd中获取到user服务
+    Key: user.rpc
