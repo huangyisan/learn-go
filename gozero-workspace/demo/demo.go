@@ -15,6 +15,7 @@ import (
 var configFile = flag.String("f", "etc/demo-api.yaml", "the config file")
 
 func main() {
+
 	flag.Parse()
 
 	var c config.Config
